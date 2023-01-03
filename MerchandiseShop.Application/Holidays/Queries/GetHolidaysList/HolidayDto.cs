@@ -18,7 +18,7 @@ namespace MerchandiseShop.Application.Holidays.Queries.GetHolidaysList
         {
             profile.CreateMap<Holiday, HolidayDto>()
                 .ForMember(holidayDto => holidayDto.Id, opt => opt.MapFrom(holiday => holiday.Id))
-                .ForMember(holidayDto => holidayDto.Name, opt => opt.MapFrom(holiday => holiday.Name))
+                .ForMember(holidayDto => holidayDto.Name, opt => opt.MapFrom(holiday => holiday.Name));
         }
     }
 }
