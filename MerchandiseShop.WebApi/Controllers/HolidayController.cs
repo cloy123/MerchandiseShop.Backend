@@ -4,6 +4,7 @@ using MerchandiseShop.Application.Holidays.Queries.GetHolidayDetails;
 using MerchandiseShop.Application.Holidays.Queries.GetHolidaysList;
 using MerchandiseShop.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MerchandiseShop.WebApi.Controllers
 {
@@ -18,6 +19,7 @@ namespace MerchandiseShop.WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<HolidayListVm>> GetAll()
         {
             var query = new GetHolidayListQuery();
@@ -26,6 +28,7 @@ namespace MerchandiseShop.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<HolidayDetailsVm>> Get(Guid id)
         {
             var query = new GetHolidayDetailsQuery
@@ -37,6 +40,7 @@ namespace MerchandiseShop.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateHolidayDto createHolidayDto)
         {
             var command = _mapper.Map<CreateHolidayCommand>(createHolidayDto);
