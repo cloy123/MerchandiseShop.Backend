@@ -3,11 +3,12 @@ using FluentValidation;
 
 namespace MerchandiseShop.Application.Holidays.Queries.GetHolidayDetails
 {
-    public class GetHolidayDetailsQueryValidator
+    public class GetHolidayDetailsQueryValidator : AbstractValidator<GetHolidayDetailsQuery>
     {
         public GetHolidayDetailsQueryValidator()
         {
-            public Guid Id { get; set; }
-    }
+            RuleFor(h => h.Id).NotEqual(Guid.Empty);
+        }
     }
 }
+

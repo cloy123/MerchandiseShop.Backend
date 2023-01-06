@@ -2,6 +2,7 @@
 using MerchandiseShop.Application.Common.Mappings;
 using MerchandiseShop.Application.Interfaces;
 using MerchandiseShop.Persistence;
+using MerchandiseShop.WebApi.Middleware;
 using System.Reflection;
 
 namespace MerchandiseShop.WebApi
@@ -38,9 +39,10 @@ namespace MerchandiseShop.WebApi
         {
             if (env.IsDevelopment())
             {
-
+                app.UseDeveloperExceptionPage();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
