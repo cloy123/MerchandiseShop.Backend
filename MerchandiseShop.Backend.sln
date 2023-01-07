@@ -11,13 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A64D7C37-A07F-4462-BA5E-2DA8104ED26B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseShop.Domain", "MerchandiseShop.Domain\MerchandiseShop.Domain.csproj", "{9A9C24EF-1A11-47D4-8D0A-FA8B0AA2B3BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchandiseShop.Domain", "MerchandiseShop.Domain\MerchandiseShop.Domain.csproj", "{9A9C24EF-1A11-47D4-8D0A-FA8B0AA2B3BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseShop.Application", "MerchandiseShop.Application\MerchandiseShop.Application.csproj", "{3C613F13-A3F4-49A1-B999-6AB20F1042A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchandiseShop.Application", "MerchandiseShop.Application\MerchandiseShop.Application.csproj", "{3C613F13-A3F4-49A1-B999-6AB20F1042A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseShop.Persistence", "MerchandiseShop.Persistence\MerchandiseShop.Persistence.csproj", "{240FA6F9-6810-4621-8B13-3FB24B160A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchandiseShop.Persistence", "MerchandiseShop.Persistence\MerchandiseShop.Persistence.csproj", "{240FA6F9-6810-4621-8B13-3FB24B160A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseShop.WebApi", "MerchandiseShop.WebApi\MerchandiseShop.WebApi.csproj", "{951C28A6-25AC-428C-A026-731827D4438A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchandiseShop.WebApi", "MerchandiseShop.WebApi\MerchandiseShop.WebApi.csproj", "{951C28A6-25AC-428C-A026-731827D4438A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchShop.Tests", "MerchShop.Tests\MerchShop.Tests.csproj", "{DDBE32C3-BBE9-42C4-A3BA-DCD0083AFA39}"
+	ProjectSection(ProjectDependencies) = postProject
+		{240FA6F9-6810-4621-8B13-3FB24B160A22} = {240FA6F9-6810-4621-8B13-3FB24B160A22}
+		{3C613F13-A3F4-49A1-B999-6AB20F1042A0} = {3C613F13-A3F4-49A1-B999-6AB20F1042A0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,10 @@ Global
 		{951C28A6-25AC-428C-A026-731827D4438A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{951C28A6-25AC-428C-A026-731827D4438A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{951C28A6-25AC-428C-A026-731827D4438A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDBE32C3-BBE9-42C4-A3BA-DCD0083AFA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDBE32C3-BBE9-42C4-A3BA-DCD0083AFA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDBE32C3-BBE9-42C4-A3BA-DCD0083AFA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDBE32C3-BBE9-42C4-A3BA-DCD0083AFA39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +60,7 @@ Global
 		{3C613F13-A3F4-49A1-B999-6AB20F1042A0} = {CC770ED5-398D-498D-AF81-37C95B506AD0}
 		{240FA6F9-6810-4621-8B13-3FB24B160A22} = {DEDE849C-BB9E-4C25-B9B8-8BAC7F85272A}
 		{951C28A6-25AC-428C-A026-731827D4438A} = {BCAF2EC0-9A20-4860-B1AC-DED53D00A490}
+		{DDBE32C3-BBE9-42C4-A3BA-DCD0083AFA39} = {A64D7C37-A07F-4462-BA5E-2DA8104ED26B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F61573A-C69A-4762-99B0-F518FC4D1CDB}
