@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MerchandiseShop.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class HolidayController : BaseController
     {
@@ -18,6 +19,11 @@ namespace MerchandiseShop.WebApi.Controllers
             _mapper = mapper;
         }
 
+
+        /// <summary>
+        /// Получить список праздников
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<HolidayListVm>> GetAll()
@@ -27,6 +33,11 @@ namespace MerchandiseShop.WebApi.Controllers
             return Ok(vm);
         }
 
+        /// <summary>
+        /// Получить праздник по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [Authorize]
         public async Task<ActionResult<HolidayDetailsVm>> Get(Guid id)
@@ -39,6 +50,12 @@ namespace MerchandiseShop.WebApi.Controllers
             return Ok(vm);
         }
 
+
+        /// <summary>
+        /// Создать праздник
+        /// </summary>
+        /// <param name="createHolidayDto"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateHolidayDto createHolidayDto)
