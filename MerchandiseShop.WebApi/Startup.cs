@@ -7,6 +7,9 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using System.IO;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace MerchandiseShop.WebApi
 {
@@ -49,15 +52,23 @@ namespace MerchandiseShop.WebApi
                     options.RequireHttpsMetadata = false;
                 });
 
-            services.AddSwaggerGen(config =>
-            {
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                config.IncludeXmlComments(xmlPath);
-            });
+            services.AddVersionedApiExplorer(options =>
+                options.GroupNameFormat = "'v'VVV");
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
+                    ConfigureSwaggerOptions>();
+            services.AddSwaggerGen();
+
+            //services.AddSwaggerGen(config =>
+            //{
+            //    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            //    config.IncludeXmlComments(xmlPath);
+            //});
+
+            services.AddApiVersioning();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -67,6 +78,11 @@ namespace MerchandiseShop.WebApi
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
+                foreach(var description in provider.ApiVersionDescriptions)
+                {
+                    config.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                    config.RoutePrefix = string.Empty;
+                }
                 config.RoutePrefix = string.Empty;
                 config.SwaggerEndpoint("swagger/v1/swagger.json", "MerchShop API");
             });
@@ -78,6 +94,8 @@ namespace MerchandiseShop.WebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseApiVersioning();
 
             app.UseEndpoints(endpoints =>
             {

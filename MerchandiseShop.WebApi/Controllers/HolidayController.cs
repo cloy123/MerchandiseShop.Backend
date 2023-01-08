@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MerchandiseShop.WebApi.Controllers
 {
+    [ApiVersion("1.0")]
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/{version:apiVersion}/[controller]")]
     public class HolidayController : BaseController
     {
         private readonly IMapper _mapper;
