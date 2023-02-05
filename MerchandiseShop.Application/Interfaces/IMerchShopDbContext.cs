@@ -3,7 +3,6 @@ using MerchandiseShop.Domain.Event;
 using MerchandiseShop.Domain.Holiday;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Product;
-using MerchandiseShop.Domain.Supply;
 using MerchandiseShop.Domain.User;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,10 +25,8 @@ namespace MerchandiseShop.Application.Interfaces
         DbSet<OrderItem> OrderItems { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<ProductColor> ProductColors { get; set; }
-        DbSet<ProductPrice> ProductPrices { get; set; }
         DbSet<ProductSize> ProductSizes { get; set; }
         DbSet<ProductType> ProductTypes { get; set; }
-        DbSet<Supply> Supplies { get; set; }
         DbSet<User> Users { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

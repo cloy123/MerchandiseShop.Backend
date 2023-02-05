@@ -40,6 +40,7 @@ namespace MerchandiseShop.WebApi
                 });
             });
 
+
             services.AddAuthentication(config =>
             {
                 config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -47,10 +48,11 @@ namespace MerchandiseShop.WebApi
             })
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:7078";
+                    options.Authority = "https://localhost:7048";
                     options.Audience = "MerchShopWebAPI";
                     options.RequireHttpsMetadata = false;
                 });
+
 
             services.AddVersionedApiExplorer(options =>
                 options.GroupNameFormat = "'v'VVV");

@@ -6,7 +6,7 @@ namespace MerchandiseShop.WebApi.Models
     public class CreateHolidayDto : IMapWith<CreateHolidayCommand>
     {
         public string Name { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public bool IsEveryYear { get; set; }
         public int Prize { get; set; }
         public int UserTypeId { get; set; }

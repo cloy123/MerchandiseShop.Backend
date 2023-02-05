@@ -10,7 +10,7 @@ namespace MerchandiseShop.Domain.Event
     {
         public Guid Id { get; set; }
         public Guid EnentId { get; set; }
-        public Guid RoleId { get; set; }
+        public Guid EventRoleId { get; set; }
         public Guid UserId { get; set; }
         public bool IsVisit { get; set; }
     }

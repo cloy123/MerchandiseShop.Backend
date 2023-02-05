@@ -30,7 +30,7 @@ namespace MerchShop.Tests.Common
                 {
                     Id = Guid.Parse("A6BB65BB-5AC2-4AFA-8A28-2616F675B825"),
                     Name = "Holiday1",
-                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Date = DateTime.Now,
                     IsEveryYear = true,
                     Prize = 100,
                     UserTypeId = 3,
@@ -40,7 +40,7 @@ namespace MerchShop.Tests.Common
                 {
                     Id = Guid.Parse("{909F7C29-891B-4BE1-8504-21F84F262084}"),
                     Name = "Holiday2",
-                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Date = DateTime.Now,
                     IsEveryYear = true,
                     Prize = 200,
                     UserTypeId = 3,
@@ -50,7 +50,7 @@ namespace MerchShop.Tests.Common
                 {
                     Id = HolidayIdForDelete,
                     Name = "Holiday3",
-                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Date = DateTime.Now,
                     IsEveryYear = true,
                     Prize = 300,
                     UserTypeId = 3,
@@ -60,7 +60,7 @@ namespace MerchShop.Tests.Common
                 {
                     Id = HolidayIdForUpdate,
                     Name = "Holiday4",
-                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Date = DateTime.Now,
                     IsEveryYear = true,
                     Prize = 400,
                     UserTypeId = 3,

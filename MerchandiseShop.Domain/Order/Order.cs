@@ -11,7 +11,7 @@ namespace MerchandiseShop.Domain.Order
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public DateTime DateCreation { get; set; }
-        public DateTime DateCompletion { get; set; }
+        public DateTime? DateCompletion { get; set; }
         public int StatusId { get; set; }
     }
 }

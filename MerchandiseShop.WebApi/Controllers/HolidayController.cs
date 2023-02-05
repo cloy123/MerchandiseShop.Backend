@@ -26,7 +26,7 @@ namespace MerchandiseShop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<HolidayListVm>> GetAll()
         {
             var query = new GetHolidayListQuery();
@@ -40,7 +40,7 @@ namespace MerchandiseShop.WebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<HolidayDetailsVm>> Get(Guid id)
         {
             var query = new GetHolidayDetailsQuery
