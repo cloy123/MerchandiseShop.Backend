@@ -32,7 +32,7 @@ namespace MerchandiseShop.IdentityService
             services.AddPersistence(Configuration);
             services.AddControllers();
 
-            services.AddAuthorization();
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -40,6 +40,7 @@ namespace MerchandiseShop.IdentityService
                     {
                         ValidateIssuer = true,
                         ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = "",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = false,
@@ -47,6 +48,7 @@ namespace MerchandiseShop.IdentityService
                     };
                     
                 });
+            services.AddAuthorization();
 
             services.AddCors(options =>
             {
@@ -92,8 +94,8 @@ namespace MerchandiseShop.IdentityService
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseApiVersioning();
 

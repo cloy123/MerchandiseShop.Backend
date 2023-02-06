@@ -10,6 +10,10 @@ using System.IO;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Net.Http.Headers;
 
 namespace MerchandiseShop.WebApi
 {
@@ -40,19 +44,72 @@ namespace MerchandiseShop.WebApi
                 });
             });
 
-
-            services.AddAuthentication(config =>
+            services.AddAuthentication(options =>
             {
-                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = "JWT_OR_COOKIE";
+                options.DefaultChallengeScheme = "JWT_OR_COOKIE";
             })
-                .AddJwtBearer("Bearer", options =>
+                .AddCookie(options =>
                 {
-                    options.Authority = "https://localhost:7048";
-                    options.Audience = "MerchShopWebAPI";
-                    options.RequireHttpsMetadata = false;
+                    options.LoginPath = "/login";
+                    options.ExpireTimeSpan = TimeSpan.FromDays(1);
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = "",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                        ValidateIssuerSigningKey = true,
+                        ValidateLifetime = false,
+                        ValidateAudience = false
+                    };
+                })
+                .AddPolicyScheme("JWT_OR_COOKIE", "JWT_OR_COOKIE", options =>
+                {
+                    options.ForwardDefaultSelector = context =>
+                    {
+                        string authorization = context.Request.Headers[HeaderNames.Authorization];
+                        if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
+                            return JwtBearerDefaults.AuthenticationScheme;
+
+                        return CookieAuthenticationDefaults.AuthenticationScheme;
+                    };
                 });
 
+            //services.AddAuthentication(config =>
+            //{
+            //    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //    .AddJwtBearer("Bearer", options =>
+            //    {
+            //        options.Authority = "https://localhost:7048/";
+            //        options.Audience = "";
+            //        options.RequireHttpsMetadata = false;
+
+            //    });
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidIssuer = Configuration["Jwt:Issuer"],
+            //        ValidAudience = "",
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+            //        ValidateIssuerSigningKey = true,
+            //        ValidateLifetime = false,
+            //        ValidateAudience = false
+            //    };
+
+            //});
+            //services.AddAuthorization();
+
+            services.AddControllersWithViews();
 
             services.AddVersionedApiExplorer(options =>
                 options.GroupNameFormat = "'v'VVV");
@@ -60,14 +117,8 @@ namespace MerchandiseShop.WebApi
                     ConfigureSwaggerOptions>();
             services.AddSwaggerGen();
 
-            //services.AddSwaggerGen(config =>
-            //{
-            //    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            //    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            //    config.IncludeXmlComments(xmlPath);
-            //});
-
             services.AddApiVersioning();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

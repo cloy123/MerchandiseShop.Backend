@@ -9,10 +9,10 @@ namespace MerchandiseShop.Domain.User
 {
     public class UserType : Enumeration
     {
-        public static UserType Administrator = new(0, "Администратор");
-        public static UserType SupplyManager = new(1, "Завхоз");
-        public static UserType Teacher = new(2, "Учитель");
-        public static UserType Student = new(3, "Ученик");
+        public static UserType Administrator = new(0, "admin");
+        public static UserType SupplyManager = new(1, "manager");
+        public static UserType Teacher = new(2, "teacher");
+        public static UserType Student = new(3, "student");
         public UserType(int id, string name) : base(id, name)
         {
         }

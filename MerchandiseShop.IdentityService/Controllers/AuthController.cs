@@ -37,17 +37,39 @@ namespace MerchandiseShop.IdentityService.Controllers
                 {
                     throw new Exception();
                 }
-                var claims = new List<Claim> {
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name),
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, findUserVm.UserDto.Email)};
-                var jwt = new JwtSecurityToken(issuer: _configuration["Jwt:Issuer"], 
-                    claims: claims, 
-                    signingCredentials: new SigningCredentials(
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                            _configuration["Jwt:Key"])), SecurityAlgorithms.HmacSha256));
-                findUserVm.Token = new JwtSecurityTokenHandler().WriteToken(jwt);
+                var issuer = _configuration["Jwt:Issuer"];
+                var audience = "";
+                var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new[]
+                    {
+                        new Claim("Id", findUserVm.UserDto.Id.ToString()),
+                        new Claim(JwtRegisteredClaimNames.Email, findUserVm.UserDto.Email),
+                        new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name)
+                    }),
+                    Issuer = issuer,
+                    Audience = audience,
+                    Expires = DateTime.UtcNow.AddMinutes(60),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                            SecurityAlgorithms.HmacSha512Signature)
+                };
+                //
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var jwtToken = tokenHandler.WriteToken(token);
+                findUserVm.Token = jwtToken;
             }
             return Ok(findUserVm);
         }
     }
 }
+//var claims = new List<Claim> {
+//    new Claim(ClaimsIdentity.DefaultRoleClaimType, role.Name),
+//    new Claim(ClaimsIdentity.DefaultNameClaimType, findUserVm.UserDto.Email)};
+//var jwt = new JwtSecurityToken(issuer: _configuration["Jwt:Issuer"], 
+//    claims: claims, 
+//    signingCredentials: new SigningCredentials(
+//        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+//            _configuration["Jwt:Key"])), SecurityAlgorithms.HmacSha256));
+//findUserVm.Token = new JwtSecurityTokenHandler().WriteToken(jwt);

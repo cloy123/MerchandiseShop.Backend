@@ -26,7 +26,7 @@ namespace MerchandiseShop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<HolidayListVm>> GetAll()
         {
             var query = new GetHolidayListQuery();

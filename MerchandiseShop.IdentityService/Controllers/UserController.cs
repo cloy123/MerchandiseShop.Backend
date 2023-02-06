@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MerchandiseShop.Application.Users.Commands.CreateUser;
 using MerchandiseShop.IdentityService.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,7 +52,6 @@ namespace MerchandiseShop.IdentityService.Controllers
         /// <param name="createHolidayDto"></param>
         /// <returns></returns>
         [HttpPost]
-        //[Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateUserDto createHolidayDto)
         {
             var command = _mapper.Map<CreateUserCommand>(createHolidayDto);

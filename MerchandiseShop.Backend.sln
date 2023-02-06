@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchShop.Tests", "MerchSho
 		{3C613F13-A3F4-49A1-B999-6AB20F1042A0} = {3C613F13-A3F4-49A1-B999-6AB20F1042A0}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchandiseShop.IdentityService", "MerchandiseShop.IdentityService\MerchandiseShop.IdentityService.csproj", "{AAC00DE0-9BCD-4144-B1A0-10903B2808E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchandiseShop.IdentityService", "MerchandiseShop.IdentityService\MerchandiseShop.IdentityService.csproj", "{AAC00DE0-9BCD-4144-B1A0-10903B2808E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
