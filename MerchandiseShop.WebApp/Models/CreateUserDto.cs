@@ -1,7 +1,7 @@
 ﻿using MerchandiseShop.Application.Common.Mappings;
 using MerchandiseShop.Application.Users.Commands.CreateUser;
 
-namespace MerchandiseShop.WebApi.Models
+namespace MerchandiseShop.WebApp.Models
 {
     public class CreateUserDto : IMapWith<CreateUserCommand>
     {

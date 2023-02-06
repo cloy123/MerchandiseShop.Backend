@@ -1,4 +1,4 @@
-namespace MerchandiseShop.WebApi.Models
+namespace MerchandiseShop.WebApp.Models
 {
     public class ErrorViewModel
     {
