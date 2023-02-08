@@ -1,0 +1,64 @@
+﻿@model MerchandiseShop.Application.Users.Queries.GetUserList.UserListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Пользователи</h1>
+
+<p>
+    <a asp-action="Create">Добавить клиента</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя фамилия
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Баланс баллов
+            </th>
+            <th>
+                Класс
+            </th>
+            <th>
+                Тип пользователя
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PointBalance)
+                </td>
+                <td>
+                    @{
+                        var className = item.ClassNumber.ToString() + item.ClassLetter;
+                    }
+                    @Html.DisplayFor(modelItem => className)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserTypeName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробно</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

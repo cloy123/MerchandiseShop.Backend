@@ -1,5 +1,5 @@
 ﻿using MerchandiseShop.Application.Interfaces;
-using MerchandiseShop.Domain.CurrencyTransaction;
+using MerchandiseShop.Domain.CurrencyTransactions;
 using MerchandiseShop.Domain.Event;
 using MerchandiseShop.Domain.Holiday;
 using MerchandiseShop.Domain.Order;

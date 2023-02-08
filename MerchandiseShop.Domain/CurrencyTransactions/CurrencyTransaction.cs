@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.CurrencyTransaction
+namespace MerchandiseShop.Domain.CurrencyTransactions
 {
     public class CurrencyTransaction
     {

@@ -1,0 +1,130 @@
+﻿@model MerchandiseShop.Application.Users.UserDetailsVm
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@*<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Id
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            Тип пользователя
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserTypeName)
+        </dd>
+        <dt class="col-sm-2">
+            Имя
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            Фамилия
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            Дата рождения
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Birthday.Date)
+        </dd>
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Баланс баллов
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PointBalance)
+        </dd>
+        <dt class="col-sm-2">
+            Класс
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var className = Model.ClassNumber.ToString() + Model.ClassLetter;
+            }
+            @Html.DisplayFor(modelItem => className)
+        </dd>
+        <dt class="col-sm-2">
+            Пол
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GenderName)
+        </dd>
+    </dl>
+</div>*@
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserTypeId" class="control-label">Тип пользователя</label>
+                <select asp-for="UserTypeId" class="form-control" asp-items="ViewBag.UserTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PointBalance" class="control-label"></label>
+                <input asp-for="PointBalance" class="form-control" />
+                <span asp-validation-for="PointBalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassNumber" class="control-label"></label>
+                <input asp-for="ClassNumber" class="form-control" />
+                <span asp-validation-for="ClassNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassLetter" class="control-label"></label>
+                <input asp-for="ClassLetter" class="form-control" />
+                <span asp-validation-for="ClassLetter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthday" class="control-label">Дата рождения</label>
+                <input asp-for="Birthday" class="form-control" type="date"/>
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenderId" class="control-label">Пол</label>
+                <select asp-for="GenderId" class="form-control" asp-items="ViewBag.UserGenderId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>
+

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MerchandiseShop.Domain.Models;
 
-namespace MerchandiseShop.Domain.CurrencyTransaction
+namespace MerchandiseShop.Domain.CurrencyTransactions
 {
     public class CurrencyTransactionType : Enumeration
     {

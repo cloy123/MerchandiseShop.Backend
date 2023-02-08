@@ -23,6 +23,7 @@ namespace MerchandiseShop.WebApp.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()
         {

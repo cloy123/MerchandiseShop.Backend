@@ -8,7 +8,7 @@ namespace MerchandiseShop.Application.Users.Commands.FindUser
 {
     public class FindUserVm
     {
-        public UserDto? UserDto { get; set; }
+        public UserDetailsVm? UserDto { get; set; }
         public bool IsUserFound { get; set; }
         public bool IsPasswordCorrect { get; set; }
         public bool IsAccess { get; set; }

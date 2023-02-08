@@ -35,7 +35,7 @@ namespace MerchandiseShop.Application.Users.Commands.FindUser
                 if(user.PasswordHash == User.GetHashFromString(request.Password))
                 {
                     findUserVm.IsPasswordCorrect = true;
-                    findUserVm.UserDto = new UserDto
+                    findUserVm.UserDto = new UserDetailsVm
                     {
                         Id = user.Id,
                         UserTypeId = user.UserTypeId,

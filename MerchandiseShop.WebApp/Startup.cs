@@ -55,12 +55,24 @@ namespace MerchandiseShop.WebApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
                 endpoints.Map("/accessdenied", async (HttpContext context) =>
                 {
                     context.Response.StatusCode = 403;
                     await context.Response.WriteAsync("Access Denied");
                 });
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=AuthController}/{action=Login}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{admin/controller=AdminUsers}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{admin/controller=AdminProducts}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{admin/controller=AdminEvents}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{admin/controller=AdminHolidays}/{action=Index}/{id?}");;
             });
         }
     }
