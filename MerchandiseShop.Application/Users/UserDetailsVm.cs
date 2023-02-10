@@ -14,6 +14,7 @@ namespace MerchandiseShop.Application.Users
     public class UserDetailsVm : IMapWith<User>
     {
         public Guid Id { get; set; }
+        public bool IsAccess { get; set; }
         public int UserTypeId { get; set; } = -1;
         public string UserTypeName
         {
@@ -27,7 +28,6 @@ namespace MerchandiseShop.Application.Users
             }
         }
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
         public string FullName
         {
@@ -56,16 +56,17 @@ namespace MerchandiseShop.Application.Users
         public void Mapping(Profile profile)
         {
             profile.CreateMap<User, UserDetailsVm>()
-                .ForMember(userDto => userDto.Id, opt => opt.MapFrom(user => user.Id))
-                .ForMember(userDto => userDto.UserTypeId, opt => opt.MapFrom(user => user.UserTypeId))
-                .ForMember(userDto => userDto.FirstName, opt => opt.MapFrom(user => user.FirstName))
-                .ForMember(userDto => userDto.LastName, opt => opt.MapFrom(user => user.LastName))
-                .ForMember(userDto => userDto.Birthday, opt => opt.MapFrom(user => user.Birthday))
-                .ForMember(userDto => userDto.Email, opt => opt.MapFrom(user => user.Email))
-                .ForMember(userDto => userDto.PointBalance, opt => opt.MapFrom(user => user.PointBalance))
-                .ForMember(userDto => userDto.ClassNumber, opt => opt.MapFrom(user => user.ClassNumber))
-                .ForMember(userDto => userDto.ClassLetter, opt => opt.MapFrom(user => user.ClassLetter))
-                .ForMember(userDto => userDto.GenderId, opt => opt.MapFrom(user => user.GenderId));
+                .ForMember(userVm => userVm.Id, opt => opt.MapFrom(user => user.Id))
+                .ForMember(userVm => userVm.UserTypeId, opt => opt.MapFrom(user => user.UserTypeId))
+                .ForMember(userVm => userVm.IsAccess, opt => opt.MapFrom(user => user.IsAccess))
+                .ForMember(userVm => userVm.FirstName, opt => opt.MapFrom(user => user.FirstName))
+                .ForMember(userVm => userVm.LastName, opt => opt.MapFrom(user => user.LastName))
+                .ForMember(userVm => userVm.Birthday, opt => opt.MapFrom(user => user.Birthday))
+                .ForMember(userVm => userVm.Email, opt => opt.MapFrom(user => user.Email))
+                .ForMember(userVm => userVm.PointBalance, opt => opt.MapFrom(user => user.PointBalance))
+                .ForMember(userVm => userVm.ClassNumber, opt => opt.MapFrom(user => user.ClassNumber))
+                .ForMember(userVm => userVm.ClassLetter, opt => opt.MapFrom(user => user.ClassLetter))
+                .ForMember(userVm => userVm.GenderId, opt => opt.MapFrom(user => user.GenderId));
         }
     }
 }

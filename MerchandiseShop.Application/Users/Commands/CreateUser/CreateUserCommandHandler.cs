@@ -27,16 +27,23 @@ namespace MerchandiseShop.Application.Users.Commands.CreateUser
                 LastName = request.LastName,
                 Birthday = request.Birthday,
                 Email = request.Email,
-                PointBalance = 500,
+                PointBalance = request.PointBalance,
                 ClassNumber = request.ClassNumber,
                 ClassLetter = request.ClassLetter,
-                IsAccess = true,
+                IsAccess = request.IsAccess,
                 GenderId = request.GenderId,
                 Id = Guid.NewGuid()
             };
-            var pass = User.CreatePassword();
-            //TODO данных для входа
-            user.SetPassword(pass);
+            if(request.Password != null && request.Password != String.Empty)
+            {
+                user.SetPassword(request.Password);
+            }
+            else
+            {
+                var pass = User.CreatePassword();
+                //TODO отправка данных для входа
+                user.SetPassword(pass);
+            }
 
             await _dbContext.Users.AddAsync(user, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
