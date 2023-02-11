@@ -8,6 +8,6 @@ namespace MerchandiseShop.Application.Holidays.Queries.GetHolidaysList
 {
     public class HolidayListVm
     {
-        public IList<HolidayDto> Holidays { get; set; }
+        public IList<HolidayDetailsVm> Holidays { get; set; }
     }
 }

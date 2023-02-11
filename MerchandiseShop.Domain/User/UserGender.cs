@@ -11,6 +11,7 @@ namespace MerchandiseShop.Domain.User
     {
         public static UserGender Male = new(0, "Мужской");
         public static UserGender Female = new(1, "Женский");
+        public static UserGender All = new(2, "Все");
         public UserGender(int id, string name) : base(id, name)
         {
         }

@@ -43,8 +43,12 @@ namespace MerchandiseShop.WebApp.Controllers.Admin
             };
             var userDetails = await Mediator.Send(query);
             var userDto = _mapper.Map<UserDto>(userDetails);
+
             var types = Enumeration.GetAll<UserType>().ToList();
+            types.Remove(UserType.All);
             var genders = Enumeration.GetAll<UserGender>().ToList();
+            genders.Remove(UserGender.All);
+
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
             return View("~/Views/Admin/Users/Edit.cshtml", userDto);
@@ -59,8 +63,12 @@ namespace MerchandiseShop.WebApp.Controllers.Admin
                 await Mediator.Send(command);
                 return RedirectToAction(nameof(Index));
             }
+
             var types = Enumeration.GetAll<UserType>().ToList();
+            types.Remove(UserType.All);
             var genders = Enumeration.GetAll<UserGender>().ToList();
+            genders.Remove(UserGender.All);
+
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
             return View("~/Views/Admin/Users/Edit.cshtml", userDto);
@@ -69,7 +77,10 @@ namespace MerchandiseShop.WebApp.Controllers.Admin
         public IActionResult Create()
         {
             var types = Enumeration.GetAll<UserType>().ToList();
+            types.Remove(UserType.All);
             var genders = Enumeration.GetAll<UserGender>().ToList();
+            genders.Remove(UserGender.All);
+
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
             return View("~/Views/Admin/Users/Create.cshtml");
@@ -84,8 +95,12 @@ namespace MerchandiseShop.WebApp.Controllers.Admin
                 var userId = await Mediator.Send(command);
                 return RedirectToAction(nameof(Index));
             }
+
             var types = Enumeration.GetAll<UserType>().ToList();
+            types.Remove(UserType.All);
             var genders = Enumeration.GetAll<UserGender>().ToList();
+            genders.Remove(UserGender.All);
+
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
             return View("~/Views/Admin/Users/Create.cshtml", userDto);

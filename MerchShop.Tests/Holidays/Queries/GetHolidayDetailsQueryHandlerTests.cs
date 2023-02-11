@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
+using MerchandiseShop.Application.Holidays.Queries;
 
 namespace MerchShop.Tests.Holidays.Queries
 {

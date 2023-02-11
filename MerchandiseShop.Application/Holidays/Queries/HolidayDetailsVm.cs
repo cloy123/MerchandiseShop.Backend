@@ -1,13 +1,14 @@
 ﻿using MerchandiseShop.Application.Common.Mappings;
 using MerchandiseShop.Domain.Holiday;
 using AutoMapper;
-namespace MerchandiseShop.Application.Holidays.Queries.GetHolidayDetails
+
+namespace MerchandiseShop.Application.Holidays.Queries
 {
     public class HolidayDetailsVm : IMapWith<Holiday>
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public bool IsEveryYear { get; set; }
         public int Prize { get; set; }
         public int UserTypeId { get; set; }

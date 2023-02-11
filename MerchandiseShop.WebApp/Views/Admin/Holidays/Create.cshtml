@@ -1,0 +1,49 @@
+﻿@model MerchandiseShop.WebApp.Models.HolidayDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control"  type="date"/>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="checkbox">
+                <label asp-for="IsEveryYear" class="control-label"></label>
+                <input asp-for="IsEveryYear"/>
+                <span asp-validation-for="IsEveryYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prize" class="control-label"></label>
+                <input asp-for="Prize" class="form-control" />
+                <span asp-validation-for="Prize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserTypeId" class="control-label"></label>
+                <select asp-for="UserTypeId" class="form-control" asp-items="ViewBag.UserTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenderId" class="control-label"></label>
+                <select asp-for="GenderId" class="form-control" asp-items="ViewBag.GenderId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

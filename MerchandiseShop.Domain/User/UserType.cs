@@ -13,6 +13,7 @@ namespace MerchandiseShop.Domain.User
         public static UserType SupplyManager = new(1, "manager");
         public static UserType Teacher = new(2, "teacher");
         public static UserType Student = new(3, "student");
+        public static UserType All = new(4, "Все");
         public UserType(int id, string name) : base(id, name)
         {
         }

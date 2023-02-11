@@ -25,7 +25,7 @@ namespace MerchandiseShop.Application.Holidays.Queries.GetHolidaysList
 
         public async Task<HolidayListVm> Handle(GetHolidayListQuery request, CancellationToken cancellationToken)
         {
-            var holidaysQuery = await _dbContext.Holidays.ProjectTo<HolidayDto>(_mapper.ConfigurationProvider)
+            var holidaysQuery = await _dbContext.Holidays.ProjectTo<HolidayDetailsVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             return new HolidayListVm { Holidays = holidaysQuery };
         }

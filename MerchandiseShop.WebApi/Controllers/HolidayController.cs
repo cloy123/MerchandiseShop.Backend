@@ -5,6 +5,7 @@ using MerchandiseShop.Application.Holidays.Queries.GetHolidaysList;
 using MerchandiseShop.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MerchandiseShop.Application.Holidays.Queries;
 
 namespace MerchandiseShop.WebApi.Controllers
 {
