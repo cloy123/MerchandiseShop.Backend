@@ -1,0 +1,47 @@
+﻿@model MerchandiseShop.Application.Events.Queries.GetEventList.EventListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Мероприятия</h1>
+
+<p>
+    <a asp-action="Create">Добавить мероприятие</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Дата
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Events)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @{
+                        var date = item.Date.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => date)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> |
+                    <a asp-controller="AdminParticipants" asp-action="Index" asp-route-id="@item.Id">Участники</a> |
+                    <a asp-controller="AdminResponsibles" asp-action="Index" asp-route-id="@item.Id">Ответственные</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

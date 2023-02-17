@@ -5,19 +5,19 @@ using MerchandiseShop.Application.Holidays.Commands.UpdateHoliday;
 using MerchandiseShop.Application.Holidays.Queries.GetHolidayDetails;
 using MerchandiseShop.Application.Holidays.Queries.GetHolidaysList;
 using MerchandiseShop.Domain.Models;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using MerchandiseShop.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace MerchandiseShop.WebApp.Controllers.Admin
+namespace MerchandiseShop.WebApp.Controllers
 {
     [Route("admin/holidays/{action=Index}/")]
-    public class AdminHolidaysController : BaseController
+    public class HolidaysController : BaseController
     {
         private readonly IMapper _mapper;
 
-        public AdminHolidaysController(IMapper mapper)
+        public HolidaysController(IMapper mapper)
         {
             _mapper = mapper;
         }

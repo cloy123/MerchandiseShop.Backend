@@ -4,7 +4,7 @@ using MerchandiseShop.Domain.Event;
 using MerchandiseShop.Domain.Holiday;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Product;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.CurrencyTransactionConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.EventConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.HolidayConfigurations;

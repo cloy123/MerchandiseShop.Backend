@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MerchandiseShop.WebApp.Controllers.Admin
+namespace MerchandiseShop.WebApp.Controllers
 {
     [Route("admin/products/{action=Index}/")]
-    public class AdminProductsController : BaseController
+    public class ProductsController : BaseController
     {
         private readonly IMapper _mapper;
 
-        public AdminProductsController(IMapper mapper)
+        public ProductsController(IMapper mapper)
         {
             _mapper = mapper;
         }

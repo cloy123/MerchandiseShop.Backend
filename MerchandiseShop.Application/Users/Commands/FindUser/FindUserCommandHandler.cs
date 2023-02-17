@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MerchandiseShop.Application.Interfaces;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

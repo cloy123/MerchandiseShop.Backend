@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.User
+namespace MerchandiseShop.Domain.Users
 {
     public class UserGender : Enumeration
     {

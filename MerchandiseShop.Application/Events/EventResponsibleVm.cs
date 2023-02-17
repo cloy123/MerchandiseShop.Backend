@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Event
+namespace MerchandiseShop.Application.Events
 {
-    public class EventResponsible
+    public class EventResponsibleVm
     {
         public Guid Id { get; set; }
         public Guid EventId { get; set; }
         public Guid UserId { get; set; }
-
         [ForeignKey("UserId")]
         public User User { get; set; }
     }

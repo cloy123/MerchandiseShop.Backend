@@ -3,7 +3,7 @@ using MerchandiseShop.Domain.Event;
 using MerchandiseShop.Domain.Holiday;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Product;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

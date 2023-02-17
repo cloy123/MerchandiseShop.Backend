@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MerchandiseShop.Application.Users.Queries.GetUserList;
 using MerchandiseShop.Application.Users.Queries.GetUserDetails;
 using MerchandiseShop.Application.Users;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using MerchandiseShop.Domain.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MerchandiseShop.Application.Users.Commands.UpdateUser;
@@ -11,14 +11,14 @@ using MerchandiseShop.WebApp.Models;
 using MerchandiseShop.Application.Users.Commands.CreateUser;
 using MerchandiseShop.Application.Users.Commands.DeleteUserCommand;
 
-namespace MerchandiseShop.WebApp.Controllers.Admin
+namespace MerchandiseShop.WebApp.Controllers
 {
     [Route("admin/users/{action=Index}/")]
-    public class AdminUsersController : BaseController
+    public class UsersController : BaseController
     {
         private readonly IMapper _mapper;
 
-        public AdminUsersController(IMapper mapper)
+        public UsersController(IMapper mapper)
         {
             _mapper = mapper;
         }

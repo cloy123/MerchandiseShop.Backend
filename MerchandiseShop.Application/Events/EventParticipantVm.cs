@@ -1,23 +1,19 @@
-﻿using MerchandiseShop.Domain.Users;
+﻿using MerchandiseShop.Application.Common;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Event
+namespace MerchandiseShop.Application.Events
 {
-    public class EventParticipant
+    public class EventParticipantVm
     {
         public Guid Id { get; set; }
         public Guid EventId { get; set; }
         public Guid EventRoleId { get; set; }
-        [ForeignKey("EventRoleId")]
-        public EventRole EventRole { get; set; }
         public Guid UserId { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
         public bool IsVisit { get; set; }
+        public ActionType actionType { get; set; } = ActionType.Nothing; 
     }
 }

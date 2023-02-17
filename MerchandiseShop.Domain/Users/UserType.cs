@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MerchandiseShop.Domain.Models;
 
-namespace MerchandiseShop.Domain.User
+namespace MerchandiseShop.Domain.Users
 {
     public class UserType : Enumeration
     {

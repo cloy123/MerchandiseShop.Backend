@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MerchandiseShop.WebApp.Controllers
 {
-    //[Route("[controller]/[action]")]
     [Controller]
     public abstract class BaseController : Controller
     {

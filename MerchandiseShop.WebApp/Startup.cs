@@ -61,18 +61,18 @@ namespace MerchandiseShop.WebApp
                     await context.Response.WriteAsync("Access Denied");
                 });
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller=AuthController}/{action=Login}");
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{admin/controller=AdminUsers}/{action=Index}/{id?}");
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{admin/controller=AdminProducts}/{action=Index}/{id?}");
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{admin/controller=AdminEvents}/{action=Index}/{id?}");
-                //endpoints.MapControllerRoute(
-                //    name: "default",
-                //    pattern: "{admin/controller=AdminHolidays}/{action=Index}/{id?}");;
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Users}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Products}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Events}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Holidays}/{action=Index}/{id?}"); ;
             });
         }
     }

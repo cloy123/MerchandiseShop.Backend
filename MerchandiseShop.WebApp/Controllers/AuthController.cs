@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MerchandiseShop.Application.Users.Commands.FindUser;
 using MerchandiseShop.Domain.Models;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using MerchandiseShop.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -66,7 +66,7 @@ namespace MerchandiseShop.WebApp.Controllers
                     AllowRefresh = true,
                     ExpiresUtc = DateTime.UtcNow.AddDays(1)
                     });
-                return Redirect("/home/index");
+                return Redirect("/events/index");
             }
             return Redirect("/accessdenied");
         }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MerchandiseShop.Application.Common.Mappings;
 using MerchandiseShop.Domain.Models;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

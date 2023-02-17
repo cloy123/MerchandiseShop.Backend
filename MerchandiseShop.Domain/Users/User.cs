@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MerchandiseShop.Domain.CurrencyTransactions;
 
-namespace MerchandiseShop.Domain.User
+namespace MerchandiseShop.Domain.Users
 {
     public class User
     {
