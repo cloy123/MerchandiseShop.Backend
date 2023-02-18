@@ -2,6 +2,7 @@
 using MerchandiseShop.Application.Events;
 using MerchandiseShop.Application.Events.Commands.CreateEvent;
 using MerchandiseShop.Application.Events.Commands.UpdateEvent;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 
 namespace MerchandiseShop.WebApp.Models
@@ -18,6 +19,7 @@ namespace MerchandiseShop.WebApp.Models
         [DisplayName("Доступно для")]
         public List<string> AvalibleFor { get; set; } = new List<string>();
 
+        [ValidateNever]
         public string NewAvalibleFor { get; set; }
 
         public void Mapping(AssemblyMappingProfile profile)
