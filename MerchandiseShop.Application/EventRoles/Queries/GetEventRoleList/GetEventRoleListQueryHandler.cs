@@ -28,7 +28,7 @@ namespace MerchandiseShop.Application.EventRoles.Queries.GetEventRoleList
                 .ProjectTo<EventRoleDetailsVm>(_mapper.ConfigurationProvider)
                 .Where(e => e.EventId == request.EventId)
                 .ToListAsync(cancellationToken);
-            return new EventRoleListVm { EventRoles = eventRoles };
+            return new EventRoleListVm { EventRoles = eventRoles, EventId = request.EventId };
         }
     }
 }

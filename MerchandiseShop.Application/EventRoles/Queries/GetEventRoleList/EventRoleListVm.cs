@@ -9,5 +9,7 @@ namespace MerchandiseShop.Application.EventRoles.Queries.GetEventRoleList
     public class EventRoleListVm
     {
         public IList<EventRoleDetailsVm> EventRoles { get; set; }
+
+        public Guid EventId { get; set; }
     }
 }

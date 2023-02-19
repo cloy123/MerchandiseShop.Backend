@@ -1,0 +1,57 @@
+﻿@using MerchandiseShop.Domain.Models
+@using MerchandiseShop.Domain.Users
+@model MerchandiseShop.Application.EventRoles.Queries.GetEventRoleList.EventRoleListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Роли мероприятия</h1>
+
+<p>
+    <a asp-action="Create" asp-route-eventId="@Model.EventId">Добавить роль</a>
+</p>
+<div>
+    <a asp-action="Index" asp-controller="Events">Назад</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Тип пользователя
+            </th>
+            <th>
+                Приз
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EventRoles)
+        {
+            var userType = Enumeration.GetAll<UserType>().FirstOrDefault(u => u.Id == item.UserTypeId);
+            if (userType != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => userType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prize)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

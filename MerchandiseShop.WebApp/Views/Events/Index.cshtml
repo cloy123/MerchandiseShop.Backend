@@ -39,7 +39,8 @@
                     <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> |
                     <a asp-controller="EventParticipants" asp-action="Index" asp-route-eventId="@item.Id">Участники</a> |
-                    <a asp-controller="EventResponsibles" asp-action="Index" asp-route-id="@item.Id">Ответственные</a> |
+                    <a asp-controller="EventResponsibles" asp-action="Index" asp-route-eventId="@item.Id">Ответственные</a> |
+                    <a asp-controller="EventRoles" asp-action="Index" asp-route-eventId="@item.Id">Роли</a>
                 </td>
             </tr>
         }
