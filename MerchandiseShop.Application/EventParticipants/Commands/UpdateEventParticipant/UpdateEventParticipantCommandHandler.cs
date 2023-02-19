@@ -47,7 +47,7 @@ namespace MerchandiseShop.Application.EventParticipants.Commands.UpdateEventPart
                 throw new NotFoundException(nameof(EventRole), request.EventRoleId);
             }
 
-            if (event_.GetAvalibleFor().Contains(user.ClassNumber.ToString() + user.ClassLetter) && eventRole.UserTypeId == user.UserTypeId)
+            if (event_.GetAvalibleFor().Contains(user.ClassNumber.ToString() + user.ClassLetter) && (eventRole.UserTypeId == user.UserTypeId || eventRole.UserTypeId == UserType.All.Id))
             {
                 entity.EventId = request.EventId;
                 entity.EventRoleId = request.EventRoleId;

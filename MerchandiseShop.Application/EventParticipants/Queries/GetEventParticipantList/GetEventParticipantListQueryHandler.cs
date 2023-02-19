@@ -30,7 +30,7 @@ namespace MerchandiseShop.Application.EventParticipants.Queries.GetEventParticip
                 .ProjectTo<EventParticipantDetailsVm>(_mapper.ConfigurationProvider)
                 .Where(e => e.EventId == request.EventId)
                 .ToListAsync(cancellationToken);
-            return new EventParticipantListVm { EventParticipants = eventParcticants };
+            return new EventParticipantListVm { EventParticipants = eventParcticants, EventId = request.EventId };
         }
     }
 }

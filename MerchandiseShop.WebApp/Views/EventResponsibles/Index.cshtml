@@ -1,0 +1,53 @@
+﻿@using MerchandiseShop.Domain.Models
+@using MerchandiseShop.Domain.Users
+@model MerchandiseShop.Application.EventResponsibles.Queries.GetEventResponsibleList.EventResponsibleListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Участвующие в мероприятии</h1>
+
+<p>
+    <a asp-action="Create" asp-route-eventId="@Model.EventId">Добавить</a>
+</p>
+<div>
+    <a asp-action="Index" asp-controller="Events">Назад</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Пользователь
+            </th>
+            <th>
+                Тип пользователя
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EventResponsibles)
+        {
+            var userType = Enumeration.GetAll<UserType>().FirstOrDefault(u => u.Id == item.User.UserTypeId);
+            if (userType != null)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var userName = item.User.FirstName + " " + item.User.LastName;
+                        }
+                        @Html.DisplayFor(modelItem => userName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => userType.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

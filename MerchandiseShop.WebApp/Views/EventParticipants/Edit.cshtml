@@ -1,4 +1,4 @@
-﻿@model MerchandiseShop.WebApp.Models.EventDto
+﻿@model MerchandiseShop.WebApp.Models.EventParticipantDto
 
 @{
     ViewData["Title"] = "Edit";
@@ -13,52 +13,25 @@
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" readonly />
             </div>
+            <input type="hidden" asp-for="EventId" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control"  type="date"/>
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-
-             <div class="form-group">
-
-                <label asp-for="AvalibleFor" class="control-label"></label>
-                @if(Model != null)
-                {
-                    <table class="table">
-                    @for(int i = 0; i < Model.AvalibleFor.Count; i++)
-                    {
-                        <tr>
-                            <td>
-                                @Model.AvalibleFor[i]
-                            </td>
-                            <td>
-                                <input type="submit" asp-action="DeleteAvalibleFor" asp-route-index="@i" value="Удалить" class="input_as_link"/>
-                            </td>
-                        </tr>   
-                    }
-                    </table>
+                <label asp-for="UserId" class="control-label"></label>
+                @{
+                    var userInfo = Model.User.FirstName + " " + Model.User.LastName + " " + Model.User.ClassNumber.ToString() + Model.User.ClassLetter;
                 }
+                @Html.DisplayFor(modelItem => userInfo)
+                <input asp-for="UserId" type="hidden" class="form-control" />
             </div>
-
-            <div>
-                <input asp-for="NewAvalibleFor"/>
-                <input type="submit" asp-action="AddAvalibleFor"  value="Добавить"/>
-            </div>
-
             <div class="form-group">
-                @Html.EditorFor(m => Model.AvalibleFor, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                <label asp-for="EventRoleId" class="control-label"></label>
+                <select asp-for="EventRoleId" class="form-control" asp-items="ViewBag.EventRoleId"></select>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+            <div class="checkbox">
+                <label asp-for="IsVisit" class="control-label"></label>
+                <input asp-for="IsVisit"/>
+                <span asp-validation-for="IsVisit" class="text-danger"></span>
             </div>
+             
 
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary" />
@@ -68,5 +41,5 @@
 </div>
 
 <div>
-    <a asp-action="Index">Назад</a>
+    <a asp-action="Index" asp-route-eventId="@Model.EventId">Назад</a>
 </div>

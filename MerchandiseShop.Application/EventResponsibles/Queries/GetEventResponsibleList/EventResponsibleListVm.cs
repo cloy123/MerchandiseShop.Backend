@@ -9,5 +9,7 @@ namespace MerchandiseShop.Application.EventResponsibles.Queries.GetEventResponsi
     public class EventResponsibleListVm
     {
         public IList<EventResponsibleDetailsVm> EventResponsibles { get; set; }
+
+        public Guid EventId { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace MerchandiseShop.Application.EventResponsibles.Queries.GetEventResponsi
                 .ProjectTo<EventResponsibleDetailsVm>(_mapper.ConfigurationProvider)
                 .Where(e => e.EventId == request.EventId)
                 .ToListAsync(cancellationToken);
-            return new EventResponsibleListVm { EventResponsibles = eventResponsibles };
+            return new EventResponsibleListVm { EventResponsibles = eventResponsibles, EventId = request.EventId };
         }
     }
 }

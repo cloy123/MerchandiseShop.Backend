@@ -1,5 +1,4 @@
-﻿@model MerchandiseShop.WebApp.Models.EventParticipantDto
-
+﻿@model MerchandiseShop.WebApp.Models.EventResponsibleDto
 @{
     ViewData["Title"] = "Delete";
 }
@@ -22,21 +21,6 @@
                 var userName = Model.User.FirstName + " " + Model.User.LastName;
             }
             @Html.DisplayFor(model => userName)
-        </dd>
-        <dt class="col-sm-2">
-            Класс
-        </dt>
-        <dd class="col-sm-10">
-            @{
-                var userClass = Model.User.ClassNumber + Model.User.ClassLetter;
-            }
-            @Html.DisplayFor(model => userClass) 
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EventRoleId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EventRole.Name)
         </dd>
     </dl>
 

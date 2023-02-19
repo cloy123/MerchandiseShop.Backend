@@ -9,5 +9,7 @@ namespace MerchandiseShop.Application.EventParticipants.Queries.GetEventParticip
     public class EventParticipantListVm
     {
         public IList<EventParticipantDetailsVm> EventParticipants { get; set; }
+
+        public Guid EventId { get; set; }
     }
 }

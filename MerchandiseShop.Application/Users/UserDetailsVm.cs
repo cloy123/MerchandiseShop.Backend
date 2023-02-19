@@ -36,6 +36,25 @@ namespace MerchandiseShop.Application.Users
                 return FirstName + " " + LastName;
             }
         }
+
+        public string UserFullInfo
+        {
+            get
+            {
+                var info = FullName;
+                if (ClassNumber != null)
+                {
+                    info += " " + ClassNumber.ToString();
+                    if (ClassLetter != null)
+                    {
+                        info += ClassLetter;
+                    }
+                }
+                info += " " + UserTypeName;
+                return info;
+            }
+        }
+
         public DateTime Birthday { get; set; }
         public string Email { get; set; }
         public int PointBalance { get; set; } = 0;

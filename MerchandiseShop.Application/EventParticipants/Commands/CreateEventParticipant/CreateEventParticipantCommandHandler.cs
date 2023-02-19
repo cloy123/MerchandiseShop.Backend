@@ -38,14 +38,15 @@ namespace MerchandiseShop.Application.EventParticipants.Commands.CreateEventPart
             {
                 throw new NotFoundException(nameof(EventRole), request.EventRoleId);
             }
-            if(event_.GetAvalibleFor().Contains(user.ClassNumber.ToString() + user.ClassLetter) && eventRole.UserTypeId == user.UserTypeId)
+            if(event_.GetAvalibleFor().Contains(user.ClassNumber.ToString() + user.ClassLetter) && (eventRole.UserTypeId == user.UserTypeId || eventRole.UserTypeId == UserType.All.Id))
             {
                 var eventParticipant = new EventParticipant
                 {
                     Id = Guid.NewGuid(),
                     EventId = request.EventId,
                     EventRoleId = request.EventRoleId,
-                    UserId = request.UserId
+                    UserId = request.UserId,
+                    IsVisit = false
                 };
                 await _dbContext.EventParticipants.AddAsync(eventParticipant, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);

@@ -10,8 +10,11 @@
 <h1>Участвующие в мероприятии</h1>
 
 <p>
-    <a asp-action="Create">Добавить</a>
+    <a asp-action="Create" asp-route-eventId="@Model.EventId">Добавить</a>
 </p>
+<div>
+    <a asp-action="Index" asp-controller="Events">Назад</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -41,10 +44,16 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.User.FirstName) + " " + @Html.DisplayFor(modelItem => item.User.LastName) 
+                        @{
+                            var userName = item.User.FirstName + " " + item.User.LastName;
+                        }
+                        @Html.DisplayFor(modelItem => userName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.User.ClassNumber) +  @Html.DisplayFor(modelItem => item.User.ClassLetter) 
+                        @{
+                            var userClass = item.User.ClassNumber + item.User.ClassLetter;
+                        }
+                        @Html.DisplayFor(modelItem => userClass) 
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.EventRole.Name)
@@ -53,7 +62,18 @@
                         @Html.DisplayFor(modelItem => userType.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IsVisit) 
+                        @{
+                            var isVisit = "";
+                            if (item.IsVisit)
+                            {
+                                isVisit = "Да";
+                            }
+                            else
+                            {
+                                isVisit = "Нет";
+                            }
+                        }
+                        @Html.DisplayFor(modelItem => isVisit) 
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
