@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Event
+namespace MerchandiseShop.Application.EventRoles.Commands.UpdateEventRole
 {
-    public class EventRole
+    public class UpdateEventRoleCommand : IRequest
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

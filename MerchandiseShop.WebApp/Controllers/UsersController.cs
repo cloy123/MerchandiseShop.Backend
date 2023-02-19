@@ -13,7 +13,6 @@ using MerchandiseShop.Application.Users.Commands.DeleteUserCommand;
 
 namespace MerchandiseShop.WebApp.Controllers
 {
-    [Route("admin/users/{action=Index}/")]
     public class UsersController : BaseController
     {
         private readonly IMapper _mapper;
@@ -27,7 +26,7 @@ namespace MerchandiseShop.WebApp.Controllers
         {
             var query = new GetUserListQuery();
             var list = await Mediator.Send(query);
-            return View("~/Views/Admin/Users/Index.cshtml", list);
+            return View("Index", list);
         }
 
         public async Task<IActionResult> Edit(Guid? id)
@@ -51,7 +50,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Users/Edit.cshtml", userDto);
+            return View("Edit", userDto);
         }
 
         [HttpPost]
@@ -71,7 +70,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Users/Edit.cshtml", userDto);
+            return View("Edit", userDto);
         }
 
         public IActionResult Create()
@@ -83,7 +82,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Users/Create.cshtml");
+            return View("Create");
         }
 
         [HttpPost]
@@ -103,7 +102,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["UserGenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Users/Create.cshtml", userDto);
+            return View("Create", userDto);
         }
 
         public async Task<IActionResult> Delete(Guid? id)
@@ -125,7 +124,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             var userDto = _mapper.Map<UserDto>(userDetails);
 
-            return View("~/Views/Admin/Users/Delete.cshtml", userDto);
+            return View("Delete", userDto);
         }
 
         [HttpPost, ActionName("Delete")]

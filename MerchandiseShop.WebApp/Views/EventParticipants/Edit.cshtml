@@ -1,0 +1,72 @@
+﻿@model MerchandiseShop.WebApp.Models.EventDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control"  type="date"/>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+
+                <label asp-for="AvalibleFor" class="control-label"></label>
+                @if(Model != null)
+                {
+                    <table class="table">
+                    @for(int i = 0; i < Model.AvalibleFor.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Model.AvalibleFor[i]
+                            </td>
+                            <td>
+                                <input type="submit" asp-action="DeleteAvalibleFor" asp-route-index="@i" value="Удалить" class="input_as_link"/>
+                            </td>
+                        </tr>   
+                    }
+                    </table>
+                }
+            </div>
+
+            <div>
+                <input asp-for="NewAvalibleFor"/>
+                <input type="submit" asp-action="AddAvalibleFor"  value="Добавить"/>
+            </div>
+
+            <div class="form-group">
+                @Html.EditorFor(m => Model.AvalibleFor, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

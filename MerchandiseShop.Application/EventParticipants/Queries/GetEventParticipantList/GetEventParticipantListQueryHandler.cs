@@ -25,6 +25,8 @@ namespace MerchandiseShop.Application.EventParticipants.Queries.GetEventParticip
         public async Task<EventParticipantListVm> Handle(GetEventParticipantListQuery request, CancellationToken cancellationToken)
         {
             var eventParcticants = await _dbContext.EventParticipants
+                .Include(e => e.EventRole)
+                .Include(e => e.User)
                 .ProjectTo<EventParticipantDetailsVm>(_mapper.ConfigurationProvider)
                 .Where(e => e.EventId == request.EventId)
                 .ToListAsync(cancellationToken);

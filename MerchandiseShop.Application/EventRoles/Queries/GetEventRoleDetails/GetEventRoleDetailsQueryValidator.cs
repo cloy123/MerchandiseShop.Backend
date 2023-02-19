@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Application.Events.Commands.DeleteEvent
+namespace MerchandiseShop.Application.EventRoles.Queries.GetEventRoleDetails
 {
-    public class DeleteEventCommandValidator : AbstractValidator<DeleteEventCommand>
+    public class GetEventRoleDetailsQueryValidator : AbstractValidator<GetEventRoleDetailsQuery>
     {
-        public DeleteEventCommandValidator()
+        public GetEventRoleDetailsQueryValidator()
         {
             RuleFor(h => h.Id).NotEqual(Guid.Empty);
         }

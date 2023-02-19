@@ -1,14 +1,14 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Event
+namespace MerchandiseShop.Application.EventRoles.Commands.CreateEventRole
 {
-    public class EventRole
+    public class CreateEventRoleCommand : IRequest<Guid>
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public int UserTypeId { get; set; }
         public Guid EventId { get; set; }

@@ -1,0 +1,66 @@
+﻿@using MerchandiseShop.Domain.Models
+@using MerchandiseShop.Domain.Users
+@model MerchandiseShop.Application.EventParticipants.Queries.GetEventParticipantList.EventParticipantListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Участвующие в мероприятии</h1>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя Фамилия
+            </th>
+            <th>
+                Класс
+            </th>
+            <th>
+                Роль
+            </th>
+            <th>
+                Тип пользователя
+            </th>
+            <th>
+                Посещение
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EventParticipants)
+        {
+            var userType = Enumeration.GetAll<UserType>().FirstOrDefault(u => u.Id == item.User.UserTypeId);
+            if (userType != null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FirstName) + " " + @Html.DisplayFor(modelItem => item.User.LastName) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.ClassNumber) +  @Html.DisplayFor(modelItem => item.User.ClassLetter) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventRole.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => userType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsVisit) 
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

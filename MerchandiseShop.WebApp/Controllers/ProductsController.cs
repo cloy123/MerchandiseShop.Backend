@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MerchandiseShop.WebApp.Controllers
 {
-    [Route("admin/products/{action=Index}/")]
     public class ProductsController : BaseController
     {
         private readonly IMapper _mapper;
@@ -15,7 +14,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View("~/Views/Admin/Products/Index.cshtml");
+            return View("Index");
         }
     }
 }

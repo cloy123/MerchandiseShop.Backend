@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MerchandiseShop.WebApp.Controllers
 {
-    [Route("admin/holidays/{action=Index}/")]
     public class HolidaysController : BaseController
     {
         private readonly IMapper _mapper;
@@ -26,7 +25,7 @@ namespace MerchandiseShop.WebApp.Controllers
         {
             var query = new GetHolidayListQuery();
             var list = await Mediator.Send(query);
-            return View("~/Views/Admin/Holidays/Index.cshtml", list);
+            return View("Index", list);
         }
 
         public IActionResult Create()
@@ -36,7 +35,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["GenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Holidays/Create.cshtml");
+            return View("Create");
         }
 
         [HttpPost]
@@ -54,7 +53,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["GenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Holidays/Create.cshtml", holidayDto);
+            return View("Create", holidayDto);
         }
 
         public async Task<IActionResult> Delete(Guid? id)
@@ -76,7 +75,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             var holidayDto = _mapper.Map<HolidayDto>(holidayDetails);
 
-            return View("~/Views/Admin/Holidays/Delete.cshtml", holidayDto);
+            return View("Delete", holidayDto);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -110,7 +109,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["GenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Holidays/Edit.cshtml", holidayDto);
+            return View("Edit", holidayDto);
         }
 
         [HttpPost]
@@ -127,7 +126,7 @@ namespace MerchandiseShop.WebApp.Controllers
 
             ViewData["UserTypeId"] = new SelectList(types, "Id", "Name");
             ViewData["GenderId"] = new SelectList(genders, "Id", "Name");
-            return View("~/Views/Admin/Holidays/Edit.cshtml", holidayDto);
+            return View("Edit", holidayDto);
         }
     }
 }

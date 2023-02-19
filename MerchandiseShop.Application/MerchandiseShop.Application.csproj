@@ -19,10 +19,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EventParticipants\Commands\CreateEventParticipant\" />
-    <Folder Include="EventParticipants\Commands\DeleteEventParticipant\" />
-    <Folder Include="EventParticipants\Commands\UpdateEventParticipant\" />
-  </ItemGroup>
-
 </Project>

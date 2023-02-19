@@ -1,19 +1,18 @@
-﻿using MerchandiseShop.Domain.Users;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Application.Events
+namespace MerchandiseShop.Application.EventParticipants.Commands.UpdateEventParticipant
 {
-    public class EventResponsibleDetailsVm
+    public class UpdateEventParticipantCommand : IRequest
     {
         public Guid Id { get; set; }
         public Guid EventId { get; set; }
+        public Guid EventRoleId { get; set; }
         public Guid UserId { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        public bool IsVisit { get; set; }
     }
 }
