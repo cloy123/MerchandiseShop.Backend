@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MerchandiseShop.Application.ProductTypes.Queries.GetProductTypeList
 {
-    public class GetProductSizeListQuery : IRequest<ProductSizeListVm>
+    public class GetProductTypeListQuery : IRequest<ProductTypeListVm>
     {
     }
 }

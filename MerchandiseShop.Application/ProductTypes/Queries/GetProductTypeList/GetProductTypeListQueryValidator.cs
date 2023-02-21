@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MerchandiseShop.Application.ProductTypes.Queries.GetProductTypeList
 {
-    public class GetProductSizeListQueryValidator : AbstractValidator<GetProductSizeListQuery>
+    public class GetProductTypeListQueryValidator : AbstractValidator<GetProductTypeListQuery>
     {
-        public GetProductSizeListQueryValidator()
+        public GetProductTypeListQueryValidator()
         {
 
         }

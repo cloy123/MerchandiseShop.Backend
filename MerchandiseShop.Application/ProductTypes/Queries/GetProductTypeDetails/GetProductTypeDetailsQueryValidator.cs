@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MerchandiseShop.Application.ProductTypes.Queries.GetProductTypeDetails
 {
-    public class GetProductSizeDetailsQueryValidator : AbstractValidator<GetProductTypeDetailsQuery>
+    public class GetProductTypeDetailsQueryValidator : AbstractValidator<GetProductTypeDetailsQuery>
     {
-        public GetProductSizeDetailsQueryValidator()
+        public GetProductTypeDetailsQueryValidator()
         {
             RuleFor(h => h.Id).NotEqual(Guid.Empty);
         }

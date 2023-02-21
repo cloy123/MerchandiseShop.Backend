@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using MerchandiseShop.Application.Interfaces;
+using MerchandiseShop.Application.ProductSizes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,23 +12,23 @@ using System.Threading.Tasks;
 
 namespace MerchandiseShop.Application.ProductTypes.Queries.GetProductTypeList
 {
-    public class GetProductSizeListQueryHandler : IRequestHandler<GetProductSizeListQuery, ProductSizeListVm>
+    public class GetProductTypeListQueryHandler : IRequestHandler<GetProductTypeListQuery, ProductTypeListVm>
     {
 
         private readonly IMerchShopDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetProductSizeListQueryHandler(IMerchShopDbContext dbContext, IMapper mapper)
+        public GetProductTypeListQueryHandler(IMerchShopDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
 
-        public async Task<ProductSizeListVm> Handle(GetProductSizeListQuery request, CancellationToken cancellationToken)
+        public async Task<ProductTypeListVm> Handle(GetProductTypeListQuery request, CancellationToken cancellationToken)
         {
-            var productTypesQuery = await _dbContext.ProductTypes.ProjectTo<ProductSizeListVm>(_mapper.ConfigurationProvider)
+            var productTypesQuery = await _dbContext.ProductTypes.ProjectTo<ProductTypeDetailsVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-            return new ProductSizeListVm { ProductTypes = productTypesQuery };
+            return new ProductTypeListVm { ProductTypes = productTypesQuery };
         }
     }
 }

@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace MerchandiseShop.Application.ProductTypes.Queries.GetProductTypeDetails
 {
-    public class GetProductSizeDetailsQueryHandler : IRequestHandler<GetProductTypeDetailsQuery, ProductTypeDetailsVm>
+    public class GetProductTypeDetailsQueryHandler : IRequestHandler<GetProductTypeDetailsQuery, ProductTypeDetailsVm>
     {
         private readonly IMerchShopDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetProductSizeDetailsQueryHandler(IMerchShopDbContext dbContext, IMapper mapper)
+        public GetProductTypeDetailsQueryHandler(IMerchShopDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

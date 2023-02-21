@@ -25,7 +25,7 @@ namespace MerchandiseShop.Application.ProductColors.Queries.GetProductColorList
 
         public async Task<ProductColorListVm> Handle(GetProductColorListQuery request, CancellationToken cancellationToken)
         {
-            var productColorQuery = await _dbContext.ProductSizes.ProjectTo<ProductColorDetailsVm>(_mapper.ConfigurationProvider)
+            var productColorQuery = await _dbContext.ProductColors.ProjectTo<ProductColorDetailsVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             return new ProductColorListVm { ProductColors = productColorQuery };
         }

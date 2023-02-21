@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MerchandiseShop.Application.ProductTypes.Queries.GetProductTypeList
 {
-    public class ProductSizeListVm
+    public class ProductTypeListVm
     {
         public IList<ProductTypeDetailsVm> ProductTypes { get; set; }
     }
