@@ -30,7 +30,7 @@ namespace MerchandiseShop.Application.ProductTypes.Commands.DeleteProductType
             }
 
             _dbContext.ProductTypes.Remove(entity);
-            _dbContext.Products.RemoveRange(_dbContext.Products.Where(p => p.TypeId == request.Id));
+            _dbContext.Products.RemoveRange(_dbContext.Products.Where(p => p.ProductTypeId == request.Id));
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

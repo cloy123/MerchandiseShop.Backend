@@ -2,12 +2,14 @@
 using MerchandiseShop.Domain.CurrencyTransactions;
 using MerchandiseShop.Domain.Event;
 using MerchandiseShop.Domain.Holiday;
+using MerchandiseShop.Domain.Notifications;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Product;
 using MerchandiseShop.Domain.Users;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.CurrencyTransactionConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.EventConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.HolidayConfigurations;
+using MerchandiseShop.Persistence.EntityTypeConfigurations.NotificationConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.OrderConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.ProductConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.UserConfigurations;
@@ -30,6 +32,7 @@ namespace MerchandiseShop.Persistence
         public DbSet<ProductSize> ProductSizes { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public MerchShopDbContext(DbContextOptions<MerchShopDbContext> options) : base(options) { }
 
@@ -48,6 +51,7 @@ namespace MerchandiseShop.Persistence
             builder.ApplyConfiguration(new ProductSizeConfiguration());
             builder.ApplyConfiguration(new ProductTypeConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new NotificationConfiguration());
             base.OnModelCreating(builder);
         }
     }

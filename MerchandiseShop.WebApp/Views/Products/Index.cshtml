@@ -1,4 +1,4 @@
-﻿@model MerchandiseShop.Application.Holidays.Queries.GetHolidaysList.HolidayListVm
+﻿@model MerchandiseShop.Application.Products.Queries.GetProductList.ProductListVm
 
 @{
     ViewData["Title"] = "Index";
@@ -19,36 +19,57 @@
 <p>
     <a asp-action="Index" asp-controller="ProductTypes">Типы товаров</a>
 </p>
-@*<table class="table">
+<table class="table">
     <thead>
         <tr>
             <th>
-                Название
+                
             </th>
             <th>
-                Дата
+                Тип
             </th>
             <th>
-                Награда
+                Цвет
+            </th>
+            <th>
+                Размер
+            </th>
+            <th>
+                Остаток
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                Скидка
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Holidays)
+        @foreach (var item in Model.Products)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    <img src="https://localhost:7088/images/@item.ImageFileName" height="200"/>
                 </td>
                 <td>
-                    @{
-                        var date = item.Date.ToShortDateString();
-                    }
-                    @Html.DisplayFor(modelItem => date)
+                    @Html.DisplayFor(modelItem => item.ProductType.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Prize)
+                    @Html.DisplayFor(modelItem => item.ProductColor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductSize.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
@@ -57,4 +78,4 @@
             </tr>
         }
     </tbody>
-</table>*@
+</table>
