@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Product
+namespace MerchandiseShop.Domain.Products
 {
-    public class ProductColor
+    public class ProductType
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Value { get; set; }
     }
 }

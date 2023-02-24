@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using MerchandiseShop.Application.Common.Exceptions;
 using MerchandiseShop.Application.Interfaces;
-using MerchandiseShop.Domain.Product;
+using MerchandiseShop.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;

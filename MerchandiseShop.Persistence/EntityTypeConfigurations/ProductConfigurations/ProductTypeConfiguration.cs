@@ -1,4 +1,4 @@
-﻿using MerchandiseShop.Domain.Product;
+﻿using MerchandiseShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Product
+namespace MerchandiseShop.Domain.Products
 {
     public class Product
     {
@@ -28,8 +28,10 @@ namespace MerchandiseShop.Domain.Product
 
         public bool ShowInCatalog { get; set; }
         public int Quantity { get; set; }
+        [NotMapped]
+        public int FreeQuantity { get; set; }
         public int MinQuantity { get; set; }
-        public double Price { get; set; }
+        public int Price { get; set; }
         public int Discount { get; set; }
         public string ImageFileName { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MerchandiseShop.Application.Common.Mappings;
-using MerchandiseShop.Domain.Product;
+using MerchandiseShop.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +20,9 @@ namespace MerchandiseShop.Application.Products
         public ProductColor ProductColor { get; set; }
         public bool ShowInCatalog { get; set; }
         public int Quantity { get; set; }
+        public int FreeQuantity { get; set; }
         public int MinQuantity { get; set; }
-        public double Price { get; set; }
+        public int Price { get; set; }
         public int Discount { get; set; }
         public string ImageFileName { get; set; }
 
@@ -37,6 +38,7 @@ namespace MerchandiseShop.Application.Products
                 .ForMember(productVm => productVm.ProductColor, opt => opt.MapFrom(product => product.ProductColor))
                 .ForMember(productVm => productVm.ShowInCatalog, opt => opt.MapFrom(product => product.ShowInCatalog))
                 .ForMember(productVm => productVm.Quantity, opt => opt.MapFrom(product => product.Quantity))
+                .ForMember(productVm => productVm.FreeQuantity, opt => opt.MapFrom(product => product.FreeQuantity))
                 .ForMember(productVm => productVm.MinQuantity, opt => opt.MapFrom(product => product.MinQuantity))
                 .ForMember(productVm => productVm.Price, opt => opt.MapFrom(product => product.Price))
                 .ForMember(productVm => productVm.Discount, opt => opt.MapFrom(product => product.Discount))

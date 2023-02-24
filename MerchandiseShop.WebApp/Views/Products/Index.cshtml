@@ -38,6 +38,9 @@
                 Остаток
             </th>
             <th>
+                Свободный остаток
+            </th>
+            <th>
                 Цена
             </th>
             <th>
@@ -64,6 +67,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FreeQuantity)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)

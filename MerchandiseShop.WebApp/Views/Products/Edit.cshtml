@@ -42,6 +42,10 @@
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="FreeQuantity" class="control-label"></label>
+                <input asp-for="FreeQuantity" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
                 <label asp-for="MinQuantity" class="control-label"></label>
                 <input asp-for="MinQuantity" class="form-control"/>
                 <span asp-validation-for="MinQuantity" class="text-danger"></span>

@@ -2,7 +2,7 @@
 using MerchandiseShop.Application.Products;
 using MerchandiseShop.Application.Products.Commands.CreateProduct;
 using MerchandiseShop.Application.Products.Commands.UpdateProduct;
-using MerchandiseShop.Domain.Product;
+using MerchandiseShop.Domain.Products;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 
@@ -28,10 +28,13 @@ namespace MerchandiseShop.WebApp.Models
         public bool ShowInCatalog { get; set; }
         [DisplayName("Количество")]
         public int Quantity { get; set; }
+        [ValidateNever]
+        [DisplayName("Свободное Количество")]
+        public int FreeQuantity { get; set; }
         [DisplayName("Минимальное количество")]
         public int MinQuantity { get; set; }
         [DisplayName("Цена")]
-        public double Price { get; set; }
+        public int Price { get; set; }
         [DisplayName("Скидка")]
         public int Discount { get; set; }
 
@@ -82,6 +85,7 @@ namespace MerchandiseShop.WebApp.Models
                 .ForMember(productDto => productDto.ProductColor, opt => opt.MapFrom(productDetails => productDetails.ProductColor))
                 .ForMember(productDto => productDto.ShowInCatalog, opt => opt.MapFrom(productDetails => productDetails.ShowInCatalog))
                 .ForMember(productDto => productDto.Quantity, opt => opt.MapFrom(productDetails => productDetails.Quantity))
+                .ForMember(productDto => productDto.FreeQuantity, opt => opt.MapFrom(productDetails => productDetails.FreeQuantity))
                 .ForMember(productDto => productDto.MinQuantity, opt => opt.MapFrom(productDetails => productDetails.MinQuantity))
                 .ForMember(productDto => productDto.Price, opt => opt.MapFrom(productDetails => productDetails.Price))
                 .ForMember(productDto => productDto.Discount, opt => opt.MapFrom(productDetails => productDetails.Discount))

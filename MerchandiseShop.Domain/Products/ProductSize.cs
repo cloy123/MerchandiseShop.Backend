@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Domain.Product
+namespace MerchandiseShop.Domain.Products
 {
-    public class ProductType
+    public class ProductSize
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

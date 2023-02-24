@@ -15,7 +15,7 @@ namespace MerchandiseShop.Application.Products.Commands.CreateProduct
         public bool ShowInCatalog { get; set; }
         public int Quantity { get; set; }
         public int MinQuantity { get; set; }
-        public double Price { get; set; }
+        public int Price { get; set; }
         public int Discount { get; set; }
         public string ImageFileName { get; set; }
     }

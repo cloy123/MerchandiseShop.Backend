@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MerchandiseShop.Application.Common.Mappings;
-using MerchandiseShop.Domain.Product;
+using MerchandiseShop.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
