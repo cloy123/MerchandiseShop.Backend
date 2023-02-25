@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MerchandiseShop.Application.Common.Exceptions;
 using MerchandiseShop.Application.Interfaces;
+using MerchandiseShop.Domain.CurrencyTransactions;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Products;
 using MerchandiseShop.Domain.Users;
@@ -80,6 +81,14 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
                     };
                 }
                 user.PointBalance-=sum;
+                await _dbContext.CurrencyTransactions.AddAsync(new CurrencyTransaction
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    Date = DateTime.Now,
+                    CurrencyTransactionTypeId = CurrencyTransactionType.OrderCreatedTransaction.Id,
+                    Points = 0 - sum
+                });
                 await _dbContext.OrderItems.AddRangeAsync(orderItems);
             }
 

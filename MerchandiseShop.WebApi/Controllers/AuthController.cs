@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MerchandiseShop.Application.Users.Commands.FindUser;
 using MerchandiseShop.Domain.Models;
-using MerchandiseShop.Domain.User;
+using MerchandiseShop.Domain.Users;
 using MerchandiseShop.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

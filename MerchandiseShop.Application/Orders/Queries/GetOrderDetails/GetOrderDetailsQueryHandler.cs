@@ -39,6 +39,9 @@ namespace MerchandiseShop.Application.Orders.Queries.GetOrderDetails
             orderDetails.OrderItems = await _dbContext.OrderItems
                 .Include(i => i.Order)
                 .Include(i => i.Product)
+                .Include(i => i.Product.ProductColor)
+                .Include(i => i.Product.ProductType)
+                .Include(i => i.Product.ProductSize)
                 .Where(i => i.OrderId == request.Id).ToListAsync();
 
             var sum = 0;

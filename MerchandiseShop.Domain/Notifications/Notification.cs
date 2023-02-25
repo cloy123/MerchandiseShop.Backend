@@ -12,5 +12,6 @@ namespace MerchandiseShop.Domain.Notifications
         public Guid UserId { get; set; }
         public bool IsSend { get; set; }
         public string Message { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

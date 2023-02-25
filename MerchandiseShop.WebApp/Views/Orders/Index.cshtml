@@ -1,79 +1,81 @@
-﻿@model MerchandiseShop.Application.Products.Queries.GetProductList.ProductListVm
+﻿@using MerchandiseShop.Domain.Models
+@using MerchandiseShop.Domain.Order
+@model MerchandiseShop.Application.Orders.Queries.GetOrderList.OrderListVm
 
 @{
     ViewData["Title"] = "Index";
 }
 
 
-<h1>Товары</h1>
+<h1>Заказы</h1>
 
-<p>
-    <a asp-action="Create">Добавить товар</a>
-</p>
-<p>
-    <a asp-action="Index" asp-controller="ProductColors">Цвета</a>
-</p>
-<p>
-    <a asp-action="Index" asp-controller="ProductSizes">Размеры</a>
-</p>
-<p>
-    <a asp-action="Index" asp-controller="ProductTypes">Типы товаров</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                
+                Пользователь
             </th>
             <th>
-                Тип
+                Статус
             </th>
             <th>
-                Цвет
+                Дата создания
             </th>
             <th>
-                Размер
+                Дата выполнения
             </th>
             <th>
-                Остаток
+                Кол-во позиций
             </th>
             <th>
-                Цена
-            </th>
-            <th>
-                Скидка
+                Сумма
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Products)
+        @foreach (var item in Model.Orders)
         {
             <tr>
                 <td>
-                    <img src="https://localhost:7088/images/@item.ImageFileName" height="200"/>
+                    @Html.DisplayFor(modelItem => item.User.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductType.Name)
+                    @{
+                        var status = Enumeration.GetAll<OrderStatus>().FirstOrDefault(s => s.Id == item.StatusId).Name;
+                    }
+                    @Html.DisplayFor(modelItem => status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductColor.Name)
+                    @{
+                        var dateCreation = item.DateCreation.ToShortDateString();
+                    }
+                    @Html.DisplayFor(modelItem => dateCreation)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductSize.Name)
+                    @{
+                        var dateCompletion = "";
+                        if(item.DateCompletion != null){
+                            dateCompletion = ((DateTime)item.DateCompletion).ToShortDateString();
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => dateCompletion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
+                    @{
+                        var quantity = 0;
+                        foreach(var orderItem in item.OrderItems)
+                        {
+                            quantity += orderItem.Quantity;
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => quantity)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.OrderSum)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Discount)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-action="Details" asp-route-orderId="@item.Id">Просмотр</a>
                 </td>
             </tr>
         }

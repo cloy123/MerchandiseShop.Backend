@@ -1,6 +1,7 @@
 ﻿using MerchandiseShop.Domain.CurrencyTransactions;
 using MerchandiseShop.Domain.Event;
 using MerchandiseShop.Domain.Holiday;
+using MerchandiseShop.Domain.Notifications;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Products;
 using MerchandiseShop.Domain.Users;
@@ -27,6 +28,7 @@ namespace MerchandiseShop.Application.Interfaces
         DbSet<ProductColor> ProductColors { get; set; }
         DbSet<ProductSize> ProductSizes { get; set; }
         DbSet<ProductType> ProductTypes { get; set; }
+        DbSet<Notification> Notifications { get; set; }
         DbSet<User> Users { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

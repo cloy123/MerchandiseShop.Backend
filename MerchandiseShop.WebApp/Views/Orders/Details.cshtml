@@ -1,0 +1,145 @@
+﻿@using MerchandiseShop.Domain.Models
+@using MerchandiseShop.Domain.Order
+@model MerchandiseShop.WebApp.Models.OrderDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Email)
+            @{
+                var userName = Model.User.FirstName + " " + Model.User.LastName;
+            }
+            @Html.DisplayFor(model => userName)
+        </dd>
+
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var dateCreation = Model.DateCreation.ToShortDateString();
+            }
+            @Html.DisplayFor(model => dateCreation)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCompletion)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var dateCompletion = "";
+                if(Model.DateCompletion != null){
+                    dateCompletion = ((DateTime)Model.DateCompletion).ToShortDateString();
+                }
+            }
+            @Html.DisplayFor(model => dateCompletion)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderSum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderSum)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StatusId)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var status = Enumeration.GetAll<OrderStatus>().FirstOrDefault(s => s.Id == Model.StatusId).Name;
+            }
+            @Html.DisplayFor(model => status)
+        </dd>
+
+        @if(Model.StatusId == OrderStatus.InWork.Id)
+        {
+            <h4>Изменить статус</h4>
+            <dt class="col-sm-10">
+                <a asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Ready.Id" class="btn btn-primary">Готово к выдаче</a>
+                <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.WaitingNewSupply.Id" class="btn btn-primary">Ожидает новой поставки</a>
+                <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Canceled.Id" class="btn btn-primary">Отменить</a>
+            </dt>
+        }else if(Model.StatusId == OrderStatus.WaitingNewSupply.Id)
+        {
+            <h4>Изменить статус</h4>
+            <dt class="col-sm-10">
+                <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Ready.Id" class="btn btn-primary">Готово к выдаче</a>
+                <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Canceled.Id" class="btn btn-primary">Отменить</a>
+            </dt>
+        }
+
+        <h4>Состав заказа</h4>
+    </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Товар
+                </th>
+                <th>
+                    Цвет
+                </th>
+                <th>
+                    Размер
+                </th>
+                <th>
+                    Количество
+                </th>
+                <th>
+                    Цена
+                </th>
+            </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductColor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductSize.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>
+
+
+</div>
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

@@ -12,5 +12,6 @@ namespace MerchandiseShop.Domain.CurrencyTransactions
         public Guid UserId { get; set; }
         public DateTime Date { get; set; }
         public int CurrencyTransactionTypeId { get; set; }
+        public int Points { get; set; }
     }
 }
