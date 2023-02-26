@@ -35,6 +35,7 @@ namespace MerchandiseShop.WebApp
             services.AddControllers();
 
             services.AddControllersWithViews();
+            services.AddHostedService<CheckHolidaysBackgroundService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,6 +53,7 @@ namespace MerchandiseShop.WebApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.AddHostedService<CheckHolidaysBackgroundService>();
 
             app.UseEndpoints(endpoints =>
             {

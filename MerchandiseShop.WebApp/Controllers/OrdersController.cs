@@ -34,16 +34,8 @@ namespace MerchandiseShop.WebApp.Controllers
             return View("Details", orderDto);
         }
 
-        //[HttpPost]
         public async Task<IActionResult> UpdateStatus(Guid orderId, int statusId)
         {
-            //var query = new GetOrderDetailsQuery
-            //{
-            //    Id = orderId
-            //};
-            //var order = await Mediator.Send(query);
-            //var orderDto = _mapper.Map<OrderDto>(order);
-            //return View("Details", orderDto);
             var command = new UpdateOrderStatusCommand
             {
                 Id = orderId,
