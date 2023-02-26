@@ -29,7 +29,7 @@ namespace MerchandiseShop.Domain.Users
 
         public static string CreatePassword()
         {
-            //TODO нормальный пароль
+            //return Guid.NewGuid().ToString("d").Substring(1, 8);
             return "pass";
         }
 
@@ -39,7 +39,7 @@ namespace MerchandiseShop.Domain.Users
             {
                 byte[] inputBytes = Encoding.ASCII.GetBytes(s);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
-
+                
                 return Convert.ToHexString(hashBytes).ToString();
             }
         }
