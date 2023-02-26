@@ -90,6 +90,13 @@
                 <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Ready.Id" class="btn btn-primary">Готово к выдаче</a>
                 <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Canceled.Id" class="btn btn-primary">Отменить</a>
             </dt>
+        }else if(Model.StatusId == OrderStatus.Ready.Id)
+        {
+            <h4>Изменить статус</h4>
+            <dt class="col-sm-10">
+                <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Complete.Id" class="btn btn-primary">Получено</a>
+                <a asp-controller="Orders" asp-action="UpdateStatus" asp-route-orderId="@Model.Id" asp-route-statusId="@OrderStatus.Canceled.Id" class="btn btn-primary">Отменить</a>
+            </dt>
         }
 
         <h4>Состав заказа</h4>

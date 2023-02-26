@@ -13,7 +13,7 @@ namespace MerchandiseShop.Domain.Order
         public static OrderStatus WaitingNewSupply = new(1, "Ожидание новой поставки");
         public static OrderStatus Canceled = new(2, "Отменено");
         public static OrderStatus Ready = new(3, "Готово к выдаче");
-        //public static OrderStatus Ready = new(3, "Готово к выдаче");
+        public static OrderStatus Complete = new(4, "Получено");
         public OrderStatus(int id, string name) : base(id, name)
         {
         }

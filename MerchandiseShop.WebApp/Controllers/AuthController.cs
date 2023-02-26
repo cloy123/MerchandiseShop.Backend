@@ -27,6 +27,16 @@ namespace MerchandiseShop.WebApp.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("admin")) 
+                {
+                    return Redirect("/users/index");
+                }else if (User.IsInRole("manager"))
+                {
+                    return Redirect("/orders/index");
+                }
+            }
             return View();
         }
 
@@ -66,6 +76,13 @@ namespace MerchandiseShop.WebApp.Controllers
                     AllowRefresh = true,
                     ExpiresUtc = DateTime.UtcNow.AddDays(1)
                     });
+                if(findUserVm.UserDto.UserTypeId == UserType.Administrator.Id)
+                {
+                    return Redirect("/users/index");
+                }else if(findUserVm.UserDto.UserTypeId == UserType.SupplyManager.Id)
+                {
+                    return Redirect("/orders/index");
+                }
                 return Redirect("/events/index");
             }
             return Redirect("/accessdenied");

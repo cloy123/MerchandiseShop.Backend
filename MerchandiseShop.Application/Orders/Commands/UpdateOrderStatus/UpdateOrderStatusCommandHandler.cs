@@ -41,9 +41,21 @@ namespace MerchandiseShop.Application.Orders.Commands.UpdateOrderStatus
                 throw new NotFoundException(nameof(User), user.Id);
             }
 
-            if (order.StatusId != request.StatusId && order.StatusId != OrderStatus.Ready.Id)
+            if (order.StatusId != request.StatusId)
             {
-                if (request.StatusId == OrderStatus.Canceled.Id)
+                if(request.StatusId == OrderStatus.Complete.Id)
+                {
+                    order.StatusId = OrderStatus.Complete.Id;
+                    order.DateCompletion = DateTime.Now;
+                    await _dbContext.OrderItems.Where(i => i.OrderId == order.Id).ForEachAsync(action: i =>
+                    {
+                        var product = _dbContext.Products.FirstOrDefault(p => p.Id == i.ProductId);
+                        if (product != null)
+                        {
+                            product.Quantity -= i.Quantity;
+                        }
+                    }, cancellationToken);
+                }else if (request.StatusId == OrderStatus.Canceled.Id && order.StatusId != OrderStatus.Complete.Id)
                 {
                     order.StatusId = OrderStatus.Canceled.Id;
                     order.DateCompletion = DateTime.Now;
@@ -83,7 +95,6 @@ namespace MerchandiseShop.Application.Orders.Commands.UpdateOrderStatus
                 }else if(request.StatusId == OrderStatus.Ready.Id)
                 {
                     order.StatusId = OrderStatus.Ready.Id;
-                    order.DateCompletion = DateTime.Now;
                     await _dbContext.Notifications.AddAsync(new Notification
                     {
                         Id = Guid.NewGuid(),
@@ -91,14 +102,6 @@ namespace MerchandiseShop.Application.Orders.Commands.UpdateOrderStatus
                         IsSend = false,
                         Message = $"Заказ от {order.DateCreation.ToShortDateString()} можно забирать",
                         DateTime = DateTime.Now
-                    }, cancellationToken);
-                    await _dbContext.OrderItems.Where(i => i.OrderId == order.Id).ForEachAsync(action: i =>
-                    {
-                        var product = _dbContext.Products.FirstOrDefault(p => p.Id == i.ProductId);
-                        if(product != null)
-                        {
-                            product.Quantity -= i.Quantity;
-                        }
                     }, cancellationToken);
                 }
             }
