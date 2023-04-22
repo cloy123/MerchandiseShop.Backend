@@ -13,5 +13,6 @@ namespace MerchandiseShop.Application.Users.Commands.FindUser
         public bool IsPasswordCorrect { get; set; }
         public bool IsAccess { get; set; }
         public string? Token { get; set; }
+        public string? RefreshToken { get; set; }
     }
 }

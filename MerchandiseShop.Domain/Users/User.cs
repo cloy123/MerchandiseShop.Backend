@@ -21,6 +21,7 @@ namespace MerchandiseShop.Domain.Users
         public bool IsAccess { get; set; }
         public int GenderId { get; set; }
         public string PasswordHash { get; set; }
+        
 
         public void SetPassword(string password)
         {

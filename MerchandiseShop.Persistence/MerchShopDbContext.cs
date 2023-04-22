@@ -5,6 +5,7 @@ using MerchandiseShop.Domain.Holiday;
 using MerchandiseShop.Domain.Notifications;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Products;
+using MerchandiseShop.Domain.UserRefreshTokens;
 using MerchandiseShop.Domain.Users;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.CurrencyTransactionConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.EventConfigurations;
@@ -13,6 +14,7 @@ using MerchandiseShop.Persistence.EntityTypeConfigurations.NotificationConfigura
 using MerchandiseShop.Persistence.EntityTypeConfigurations.OrderConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.ProductConfigurations;
 using MerchandiseShop.Persistence.EntityTypeConfigurations.UserConfigurations;
+using MerchandiseShop.Persistence.EntityTypeConfigurations.UserRefreshTokensConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace MerchandiseShop.Persistence
@@ -34,6 +36,8 @@ namespace MerchandiseShop.Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+
         public MerchShopDbContext(DbContextOptions<MerchShopDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -52,6 +56,7 @@ namespace MerchandiseShop.Persistence
             builder.ApplyConfiguration(new ProductTypeConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new NotificationConfiguration());
+            builder.ApplyConfiguration(new UserRefreshTokenConfiguration());
             base.OnModelCreating(builder);
         }
     }

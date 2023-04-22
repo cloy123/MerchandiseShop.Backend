@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Net.Http.Headers;
+using MerchandiseShop.WebApi.AuthCommon;
 
 namespace MerchandiseShop.WebApi
 {
@@ -37,19 +38,33 @@ namespace MerchandiseShop.WebApi
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
+                var key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
+                options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     ValidAudience = "",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuerSigningKey = true,
-                    ValidateLifetime = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero,
                     ValidateAudience = false
                 };
-
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context => {
+                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                        {
+                            context.Response.Headers.Add("IS-TOKEN-EXPIRED", "true");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
             });
             services.AddAuthorization();
+
+            services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
                     ConfigureSwaggerOptions>();

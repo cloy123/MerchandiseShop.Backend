@@ -4,6 +4,7 @@ using MerchandiseShop.Domain.Holiday;
 using MerchandiseShop.Domain.Notifications;
 using MerchandiseShop.Domain.Order;
 using MerchandiseShop.Domain.Products;
+using MerchandiseShop.Domain.UserRefreshTokens;
 using MerchandiseShop.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,6 +31,7 @@ namespace MerchandiseShop.Application.Interfaces
         DbSet<ProductType> ProductTypes { get; set; }
         DbSet<Notification> Notifications { get; set; }
         DbSet<User> Users { get; set; }
+        DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
