@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Notifications\Commands\" />
     <Folder Include="OrderItems\Commands\" />
   </ItemGroup>
 
