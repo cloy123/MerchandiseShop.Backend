@@ -25,14 +25,22 @@ namespace MerchandiseShop.Application.Events.Queries.GetEventDetails
 
         public async Task<EventDetailsVm> Handle(GetEventDetailsQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.Events.FirstOrDefaultAsync(h => h.Id == request.Id, cancellationToken);
+            var entity = await _dbContext.Events
+                .FirstOrDefaultAsync(h => h.Id == request.Id, cancellationToken);
 
             if (entity == null)
             {
                 throw new NotFoundException(nameof(Event), request.Id);
             }
 
-            return _mapper.Map<EventDetailsVm>(entity);
+            var result = _mapper.Map<EventDetailsVm>(entity);
+
+            result.EventRoles = await _dbContext.EventRoles.Where(r => r.EventId == entity.Id).ToListAsync();
+            result.EventResponsibles = await _dbContext.EventResponsibles.Where(r => r.EventId == entity.Id).Include(r => r.User).ToListAsync();
+            result.EventParticipants = await _dbContext.EventParticipants.Where(r => r.EventId == entity.Id).Include(r => r.User).ToListAsync();
+
+
+            return result;
         }
     }
 }

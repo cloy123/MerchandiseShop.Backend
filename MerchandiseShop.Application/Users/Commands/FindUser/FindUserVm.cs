@@ -12,7 +12,7 @@ namespace MerchandiseShop.Application.Users.Commands.FindUser
         public bool IsUserFound { get; set; }
         public bool IsPasswordCorrect { get; set; }
         public bool IsAccess { get; set; }
-        public string? Token { get; set; }
+        public string? AccessToken { get; set; }
         public string? RefreshToken { get; set; }
     }
 }

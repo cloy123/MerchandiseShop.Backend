@@ -32,6 +32,7 @@ namespace MerchandiseShop.Application.Users.Commands.DeleteUserCommand
             _dbContext.CurrencyTransactions.RemoveRange(_dbContext.CurrencyTransactions.Where(c => c.UserId == request.Id));
             _dbContext.EventParticipants.RemoveRange(_dbContext.EventParticipants.Where(e => e.UserId == request.Id));
             _dbContext.EventResponsibles.RemoveRange(_dbContext.EventResponsibles.Where(e => e.UserId == request.Id));
+            _dbContext.UserRefreshTokens.RemoveRange(_dbContext.UserRefreshTokens.Where(e => e.UserId == request.Id));
             _dbContext.Users.Remove(user);
 
             await _dbContext.SaveChangesAsync(cancellationToken);

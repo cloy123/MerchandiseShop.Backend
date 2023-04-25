@@ -36,7 +36,7 @@ namespace MerchandiseShop.WebApi.AuthCommon
                 }),
                 Issuer = issuer,
                 Audience = audience,
-                Expires = DateTime.Now.AddMinutes(1),
+                Expires = DateTime.Now.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                         SecurityAlgorithms.HmacSha512Signature)
             };

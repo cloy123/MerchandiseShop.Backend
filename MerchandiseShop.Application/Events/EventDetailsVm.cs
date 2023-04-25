@@ -17,6 +17,10 @@ namespace MerchandiseShop.Application.Events
         public string Description { get; set; }
         public List<string> AvalibleFor { get; set; }
 
+        public List<EventResponsible> EventResponsibles { get; set; }
+        public List<EventRole> EventRoles { get; set; }
+        public List<EventParticipant> EventParticipants { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Event, EventDetailsVm>()

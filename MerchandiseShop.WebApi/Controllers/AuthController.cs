@@ -46,7 +46,7 @@ namespace MerchandiseShop.WebApi.Controllers
                     Email = findUserVm.UserDto.Email, 
                     RoleName = role.Name };
                 var tokens = _jWTManager.GenerateToken(tokenData);
-                findUserVm.Token = tokens.AccessToken;
+                findUserVm.AccessToken = tokens.AccessToken;
                 findUserVm.RefreshToken = tokens.RefreshToken;
                 var commandCreaterefreshToken = new CreateUserRefreshTokenCommand 
                 { 
