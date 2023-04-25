@@ -11,7 +11,7 @@ namespace MerchandiseShop.WebApi.Models
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<string> AvalibleFor { get; set; }
+        public List<string> AvailableFor { get; set; }
 
         public List<EventResponsibleVm> EventResponsibles { get; set; }
         public List<EventRole> EventRoles { get; set; }
@@ -24,7 +24,7 @@ namespace MerchandiseShop.WebApi.Models
                 .ForMember(vm => vm.Date, opt => opt.MapFrom(edVm => edVm.Date))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(edVm => edVm.Name))
                 .ForMember(vm => vm.Description, opt => opt.MapFrom(edVm => edVm.Description))
-                .ForMember(vm => vm.AvalibleFor, opt => opt.MapFrom(edVm => edVm.AvalibleFor))
+                .ForMember(vm => vm.AvailableFor, opt => opt.MapFrom(edVm => edVm.AvalibleFor))
                 .ForMember(vm => vm.EventRoles, opt => opt.MapFrom(edVm => edVm.EventRoles));
         }
     }
