@@ -25,13 +25,13 @@ namespace MerchandiseShop.Application.Notifications.Queries.GetNotificationList
 
         public async Task<NotificationListVm> Handle(GetNotificationListQuery request, CancellationToken cancellationToken)
         {
-            var notificationsQuery = await _dbContext.Notifications
+            var notifications = await _dbContext.Notifications
                 .Where(n => n.UserId == request.UserId)
                 .ProjectTo<NotificationDetailsVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             await _dbContext.Notifications.Where(n => n.UserId == request.UserId).ForEachAsync(n => n.IsSend = true);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return new NotificationListVm { Notifications = notificationsQuery };
+            return new NotificationListVm { Notifications = notifications };
         }
     }
 }
