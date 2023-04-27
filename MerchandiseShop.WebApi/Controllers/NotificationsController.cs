@@ -16,18 +16,17 @@ namespace MerchandiseShop.WebApi.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<NotificationListVm>> GetNotifications()
+        public async Task<ActionResult<NotificationListVm>> GetNotificationsInfo()
         {
-
             var userIdClaim = User.Claims.FirstOrDefault(i => i.Type == "Id");
             if (userIdClaim == null)
             {
                 return Unauthorized();
             }
-            var guid = Guid.Parse(userIdClaim.Value).ToString();
-            var query = new GetNotificationListQuery { UserId = Guid.Parse(userIdClaim.Value)};
+            var guid = Guid.Parse(userIdClaim.Value);
+            var query = new GetNotificationListQuery { UserId = guid };
             var notifications = await Mediator.Send(query);
-            return Ok(new { notifications, guid });
+            return Ok(new { notifications.Notifications });
         }
     }
 }
