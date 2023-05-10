@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MerchandiseShop.Application.OrderItems.Commands.DeleteOrderItemFromOrder;
 using MerchandiseShop.Application.Orders.Commands.CreateOrder;
 using MerchandiseShop.Application.Orders.Queries.GetOrderList;
 using MerchandiseShop.Application.Users.Queries.GetUserDetails;
@@ -26,6 +27,20 @@ namespace MerchandiseShop.WebApi.Controllers
             if(userIdClaim != null)
             {
                 command.UserId = Guid.Parse(userIdClaim.Value);
+                var result = await Mediator.Send(command);
+                return Ok(result);
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<CancelOrderResultVm>> CancelOrder([FromBody] CancelOrderDto cancelOrderDto)
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(i => i.Type == "Id");
+            if (userIdClaim != null)
+            {
+                var command = new CancelOrderCommand { OrderId = Guid.Parse(cancelOrderDto.OrderId), UserId = Guid.Parse(userIdClaim.Value) };
                 var result = await Mediator.Send(command);
                 return Ok(result);
             }

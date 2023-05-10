@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
+namespace MerchandiseShop.Application.OrderItems.Commands.DeleteOrderItemFromOrder
 {
-    public class CreateOrderResultVm
+    public class CancelOrderResultVm
     {
-        public bool IsCreated { get; set; }
+        public bool IsCanceled { get; set; }
         public string ErrorMessage { get; set; }
-        public Guid Id { get; set; }
     }
 }

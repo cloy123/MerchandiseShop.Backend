@@ -52,7 +52,7 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
                     {
                         return new CreateOrderResultVm
                         {
-                            IsSuccess = false,
+                            IsCreated = false,
                             ErrorMessage = $"Товара {product.ProductType.Name} {product.ProductColor.Name} нет в налчии в количестве {item.Quantity}"
                         };
                     }
@@ -76,7 +76,7 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
                 {
                     return new CreateOrderResultVm
                     {
-                        IsSuccess = false,
+                        IsCreated = false,
                         ErrorMessage = "Недостаточно баллов для заказа"
                     };
                 }
@@ -103,7 +103,7 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
 
             return new CreateOrderResultVm
             {
-                IsSuccess = true,
+                IsCreated = true,
                 Id = orderGuid
             };
         }
