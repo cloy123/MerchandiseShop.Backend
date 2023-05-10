@@ -23,7 +23,7 @@ namespace MerchandiseShop.Application.Holidays.Commands.CheckHolidays
 
         public async Task<Unit> Handle(CheckHolidaysCommand request, CancellationToken cancellationToken)
         {
-            var users = await _dbContext.Users.ToListAsync();
+            var users = await _dbContext.Users.ToListAsync(cancellationToken);
 
             foreach(var user in users)
             {
@@ -37,7 +37,7 @@ namespace MerchandiseShop.Application.Holidays.Commands.CheckHolidays
                         UserId = user.Id,
                         Points = 500,
                         CurrencyTransactionTypeId = CurrencyTransactionType.HolidayTransaction.Id
-                    });
+                    }, cancellationToken);
                     await _dbContext.Notifications.AddAsync(new Notification
                     {
                         Id = Guid.NewGuid(),
@@ -45,11 +45,11 @@ namespace MerchandiseShop.Application.Holidays.Commands.CheckHolidays
                         DateTime = DateTime.Now,
                         Message = "С Днем рождения!",
                         UserId = user.Id
-                    });
+                    }, cancellationToken);
                 }
             }
             
-            var holidays = await _dbContext.Holidays.Where(h => h.Date.Date == DateTime.Now.Date).ToListAsync();
+            var holidays = await _dbContext.Holidays.Where(h => h.Date.Date == DateTime.Now.Date).ToListAsync(cancellationToken);
             foreach(var holiday in holidays)
             {
                 if(holiday.IsEveryYear && holiday.Date.Date < DateTime.Now.Date)
@@ -68,7 +68,7 @@ namespace MerchandiseShop.Application.Holidays.Commands.CheckHolidays
                             UserId = user.Id,
                             Points = holiday.Prize,
                             CurrencyTransactionTypeId = CurrencyTransactionType.HolidayTransaction.Id
-                        });
+                        }, cancellationToken);
                         await _dbContext.Notifications.AddAsync(new Notification
                         {
                             Id = Guid.NewGuid(),
@@ -76,7 +76,7 @@ namespace MerchandiseShop.Application.Holidays.Commands.CheckHolidays
                             DateTime = DateTime.Now,
                             Message = $"С {holiday.Name}",
                             UserId = user.Id
-                        });
+                        }, cancellationToken);
                     }
                 }
             }

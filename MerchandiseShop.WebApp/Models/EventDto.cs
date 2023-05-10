@@ -20,6 +20,23 @@ namespace MerchandiseShop.WebApp.Models
         public List<string> AvalibleFor { get; set; } = new List<string>();
 
         [ValidateNever]
+        [DisplayName("Статус")]
+        public string Status { get
+            {
+                if (IsCompleted)
+                {
+                    return "Завершенное";
+                }
+                else
+                {
+                    return "Активное";
+                }
+            } }
+
+
+        public bool IsCompleted { get; set; }
+
+        [ValidateNever]
         public string NewAvalibleFor { get; set; }
 
         public void Mapping(AssemblyMappingProfile profile)
@@ -43,6 +60,7 @@ namespace MerchandiseShop.WebApp.Models
                 .ForMember(eventDto => eventDto.Name, opt => opt.MapFrom(eventDetails => eventDetails.Name))
                 .ForMember(eventDto => eventDto.Date, opt => opt.MapFrom(eventDetails => eventDetails.Date))
                 .ForMember(eventDto => eventDto.Description, opt => opt.MapFrom(eventDetails => eventDetails.Description))
+                .ForMember(eventDto => eventDto.IsCompleted, opt => opt.MapFrom(eventDetails => eventDetails.IsCompleted))
                 .ForMember(eventDto => eventDto.AvalibleFor, opt => opt.MapFrom(eventDetails => eventDetails.AvalibleFor));
         }
     }

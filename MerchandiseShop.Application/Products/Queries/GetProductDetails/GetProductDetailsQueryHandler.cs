@@ -36,7 +36,7 @@ namespace MerchandiseShop.Application.Products.Queries.GetProductDetails
             
             await _dbContext.OrderItems.Include(i => i.Order)
                 .Where(i => i.ProductId == entity.Id && (i.Order.StatusId == OrderStatus.InWork.Id || i.Order.StatusId == OrderStatus.WaitingNewSupply.Id))
-                .ForEachAsync(o => freeQuantity-= o.Quantity);
+                .ForEachAsync(o => freeQuantity-= o.Quantity, cancellationToken);
 
             entity.FreeQuantity = freeQuantity;
 

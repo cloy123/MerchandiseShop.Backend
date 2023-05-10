@@ -29,9 +29,9 @@ namespace MerchandiseShop.Application.Events.Queries.GetEventList
 
             foreach(var evnt in eventsQuery)
             {
-                evnt.EventRoles = await _dbContext.EventRoles.Where(r => r.EventId == evnt.Id).ToListAsync();
-                evnt.EventResponsibles = await _dbContext.EventResponsibles.Where(r => r.EventId == evnt.Id).Include(r => r.User).ToListAsync();
-                evnt.EventParticipants = await _dbContext.EventParticipants.Where(r => r.EventId == evnt.Id).Include(r => r.User).ToListAsync();
+                evnt.EventRoles = await _dbContext.EventRoles.Where(r => r.EventId == evnt.Id).ToListAsync(cancellationToken);
+                evnt.EventResponsibles = await _dbContext.EventResponsibles.Where(r => r.EventId == evnt.Id).Include(r => r.User).ToListAsync(cancellationToken);
+                evnt.EventParticipants = await _dbContext.EventParticipants.Where(r => r.EventId == evnt.Id).Include(r => r.User).ToListAsync(cancellationToken);
             }
 
             return new EventListVm { Events = eventsQuery };

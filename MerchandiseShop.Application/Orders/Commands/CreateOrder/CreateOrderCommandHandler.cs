@@ -45,7 +45,7 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
 
                     await _dbContext.OrderItems.Include(i => i.Order)
                         .Where(i => i.ProductId == product.Id && (i.Order.StatusId == OrderStatus.InWork.Id || i.Order.StatusId == OrderStatus.WaitingNewSupply.Id))
-                        .ForEachAsync(o => freeQuantity -= o.Quantity);
+                        .ForEachAsync(o => freeQuantity -= o.Quantity, cancellationToken);
                     product.FreeQuantity = freeQuantity;
 
                     if(product.FreeQuantity < item.Quantity)
@@ -67,7 +67,7 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
                     });
                     sum += itemPrice;
                 }
-                var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == request.UserId);
+                var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken);
                 if(user == null)
                 {
                     throw new NotFoundException(nameof(User), request.UserId);
@@ -88,8 +88,8 @@ namespace MerchandiseShop.Application.Orders.Commands.CreateOrder
                     Date = DateTime.Now,
                     CurrencyTransactionTypeId = CurrencyTransactionType.OrderCreatedTransaction.Id,
                     Points = 0 - sum
-                });
-                await _dbContext.OrderItems.AddRangeAsync(orderItems);
+                }, cancellationToken);
+                await _dbContext.OrderItems.AddRangeAsync(orderItems, cancellationToken);
             }
 
             await _dbContext.Orders.AddAsync(new Order

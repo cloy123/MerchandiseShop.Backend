@@ -35,7 +35,7 @@ namespace MerchandiseShop.Application.Orders.Queries.GetOrderList
                 order.OrderItems = await _dbContext.OrderItems
                 .Include(i => i.Order)
                 .Include(i => i.Product)
-                .Where(i => i.OrderId == order.Id).ToListAsync();
+                .Where(i => i.OrderId == order.Id).ToListAsync(cancellationToken);
 
                 var sum = 0;
                 foreach (var item in order.OrderItems)

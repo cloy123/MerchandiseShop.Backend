@@ -25,7 +25,8 @@ namespace MerchandiseShop.Application.Events.Commands.CreateEvent
                 Id = Guid.NewGuid(),
                 Name = request.Name,
                 Date = request.Date,
-                Description = request.Description
+                Description = request.Description,
+                IsCompleted = false
             };
             event_.SetAvalibleFor(request.AvalibleFor);
             await _dbContext.Events.AddAsync(event_, cancellationToken);

@@ -35,9 +35,9 @@ namespace MerchandiseShop.Application.Events.Queries.GetEventDetails
 
             var result = _mapper.Map<EventDetailsVm>(entity);
 
-            result.EventRoles = await _dbContext.EventRoles.Where(r => r.EventId == entity.Id).ToListAsync();
-            result.EventResponsibles = await _dbContext.EventResponsibles.Where(r => r.EventId == entity.Id).Include(r => r.User).ToListAsync();
-            result.EventParticipants = await _dbContext.EventParticipants.Where(r => r.EventId == entity.Id).Include(r => r.User).ToListAsync();
+            result.EventRoles = await _dbContext.EventRoles.Where(r => r.EventId == entity.Id).ToListAsync(cancellationToken);
+            result.EventResponsibles = await _dbContext.EventResponsibles.Where(r => r.EventId == entity.Id).Include(r => r.User).ToListAsync(cancellationToken);
+            result.EventParticipants = await _dbContext.EventParticipants.Where(r => r.EventId == entity.Id).Include(r => r.User).ToListAsync(cancellationToken);
 
 
             return result;

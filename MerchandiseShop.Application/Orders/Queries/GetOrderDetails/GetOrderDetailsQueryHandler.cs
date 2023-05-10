@@ -42,7 +42,7 @@ namespace MerchandiseShop.Application.Orders.Queries.GetOrderDetails
                 .Include(i => i.Product.ProductColor)
                 .Include(i => i.Product.ProductType)
                 .Include(i => i.Product.ProductSize)
-                .Where(i => i.OrderId == request.Id).ToListAsync();
+                .Where(i => i.OrderId == request.Id).ToListAsync(cancellationToken);
 
             var sum = 0;
             foreach(var item in orderDetails.OrderItems)

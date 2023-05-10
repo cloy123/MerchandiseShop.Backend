@@ -40,7 +40,7 @@ namespace MerchandiseShop.Application.Products.Queries.GetProductList
 
                 await orderItems
                     .Where(i => i.ProductId == product.Id && (i.Order.StatusId == OrderStatus.InWork.Id || i.Order.StatusId == OrderStatus.WaitingNewSupply.Id))
-                    .ForEachAsync(o => freeQuantity -= o.Quantity);
+                    .ForEachAsync(o => freeQuantity -= o.Quantity, cancellationToken);
 
                 product.FreeQuantity = freeQuantity;
             }

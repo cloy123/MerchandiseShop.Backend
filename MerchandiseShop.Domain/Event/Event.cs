@@ -16,6 +16,8 @@ namespace MerchandiseShop.Domain.Event
         public string Description { get; set; }
         public string AvalibleFor { get; private set; }
 
+        public bool IsCompleted { get; set; }
+
         public void SetAvalibleFor(List<string> avalibleForList)//JsonSerializer
         {
             AvalibleFor = JsonSerializer.Serialize(avalibleForList);

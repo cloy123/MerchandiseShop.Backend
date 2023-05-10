@@ -29,7 +29,7 @@ namespace MerchandiseShop.Application.Notifications.Queries.GetNotificationList
                 .Where(n => n.UserId == request.UserId)
                 .ProjectTo<NotificationDetailsVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-            await _dbContext.Notifications.Where(n => n.UserId == request.UserId).ForEachAsync(n => n.IsSend = true);
+            await _dbContext.Notifications.Where(n => n.UserId == request.UserId).ForEachAsync(n => n.IsSend = true, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return new NotificationListVm { Notifications = notifications };
         }

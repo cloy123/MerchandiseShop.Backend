@@ -30,7 +30,7 @@ namespace MerchandiseShop.Application.OrderItems.Queries.GetOrderItemList
                 .Include(i => i.Product)
                 .Where(i => i.OrderId == request.OrderId)
                 .ProjectTo<OrderItemDetailsVm>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             return new OrderItemListVm { OrderItems = orderItems };
         }

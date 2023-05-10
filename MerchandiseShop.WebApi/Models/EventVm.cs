@@ -13,6 +13,8 @@ namespace MerchandiseShop.WebApi.Models
         public string Description { get; set; }
         public List<string> AvailableFor { get; set; }
 
+        public bool IsCompeted { get; set; }
+
         public List<EventResponsibleVm> EventResponsibles { get; set; }
         public List<EventRole> EventRoles { get; set; }
         public List<EventParticipantVm> EventParticipants { get; set; }
@@ -24,8 +26,10 @@ namespace MerchandiseShop.WebApi.Models
                 .ForMember(vm => vm.Date, opt => opt.MapFrom(edVm => edVm.Date))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(edVm => edVm.Name))
                 .ForMember(vm => vm.Description, opt => opt.MapFrom(edVm => edVm.Description))
+                .ForMember(vm => vm.IsCompeted, opt => opt.MapFrom(edVm => edVm.IsCompleted))
                 .ForMember(vm => vm.AvailableFor, opt => opt.MapFrom(edVm => edVm.AvalibleFor))
                 .ForMember(vm => vm.EventRoles, opt => opt.MapFrom(edVm => edVm.EventRoles));
+           
         }
     }
 }

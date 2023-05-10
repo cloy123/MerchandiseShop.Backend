@@ -25,13 +25,13 @@ namespace MerchandiseShop.Application.OrderItems.Commands.DeleteOrderItemFromOrd
         public async Task<CancelOrderResultVm> Handle(CancelOrderCommand request, CancellationToken cancellationToken)
         {
             var order = await _dbContext.Orders
-                .FirstAsync(i => i.Id == request.OrderId);
+                .FirstAsync(i => i.Id == request.OrderId, cancellationToken);
             if(order == null)
             {
                 throw new NotFoundException(nameof(Order), request.OrderId);
             }
 
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == request.UserId);
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken);
             if (user == null)
             {
                 throw new NotFoundException(nameof(User), request.UserId);
@@ -48,7 +48,7 @@ namespace MerchandiseShop.Application.OrderItems.Commands.DeleteOrderItemFromOrd
                 .Include(i => i.Product.ProductColor)
                 .Include(i => i.Product.ProductType)
                 .Include(i => i.Product.ProductSize)
-                .Where(i => i.OrderId == request.OrderId).ToListAsync();
+                .Where(i => i.OrderId == request.OrderId).ToListAsync(cancellationToken);
 
             var sum = 0;
             foreach (var item in orderItems)
@@ -65,7 +65,7 @@ namespace MerchandiseShop.Application.OrderItems.Commands.DeleteOrderItemFromOrd
                 Date = DateTime.Now,
                 CurrencyTransactionTypeId = CurrencyTransactionType.OrderCancelledTransaction.Id,
                 Points = sum
-            });
+            }, cancellationToken);
 
             order.StatusId = OrderStatus.Canceled.Id;
 

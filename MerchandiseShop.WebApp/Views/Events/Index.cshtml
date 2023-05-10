@@ -19,6 +19,9 @@
             <th>
                 Дата
             </th>
+            <th>
+                Статус
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -34,6 +37,20 @@
                         var date = item.Date.ToShortDateString();
                     }
                     @Html.DisplayFor(modelItem => date)
+                </td>
+                <td>
+                    @{
+                        var status = "";
+                        if (item.IsCompleted)
+                        {
+                            status = "Завершенное";
+                        }
+                        else
+                        {
+                            status = "Активное";
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => status)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
