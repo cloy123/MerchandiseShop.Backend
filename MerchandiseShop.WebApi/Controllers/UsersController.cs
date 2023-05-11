@@ -33,5 +33,6 @@ namespace MerchandiseShop.WebApi.Controllers
             }
             return Ok(new {user});
         }
+
     }
 }

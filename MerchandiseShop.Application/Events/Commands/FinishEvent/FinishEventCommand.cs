@@ -9,7 +9,7 @@ namespace MerchandiseShop.Application.Events.Commands.FinishEvent
 {
     public class FinishEventCommand : IRequest<FinishEventResultVm>
     {
-        public Guid ResponsibleId { get; set; }
+        public Guid UserId { get; set; }
         public Guid EventId { get; set; }
         public List<ParticipantDto> Participants { get; set; }
     }

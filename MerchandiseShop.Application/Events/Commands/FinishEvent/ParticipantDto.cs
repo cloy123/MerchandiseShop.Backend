@@ -8,7 +8,7 @@ namespace MerchandiseShop.Application.Events.Commands.FinishEvent
 {
     public class ParticipantDto
     {
-        public Guid UserId { get; set; }
+        public Guid ParticipantId { get; set; }
         public bool IsVisit { get; set; }
     }
 }

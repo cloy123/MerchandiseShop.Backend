@@ -11,7 +11,7 @@ namespace MerchandiseShop.Application.Events.Commands.FinishEvent
     {
         public FinishEventCommandValidator()
         {
-            RuleFor(h => h.ResponsibleId).NotEqual(Guid.Empty);
+            RuleFor(h => h.UserId).NotEqual(Guid.Empty);
             RuleFor(h => h.EventId).NotEqual(Guid.Empty);
         }
     }

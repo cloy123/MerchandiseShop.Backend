@@ -36,13 +36,13 @@ namespace MerchandiseShop.Application.Events.Commands.FinishEvent
                 return new FinishEventResultVm { IsFinished = false, ErrorMessage = "Мероприятие уже завершено" };
             }
 
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == request.ResponsibleId, cancellationToken);
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == request.UserId, cancellationToken);
             if (user == null)
             {
-                throw new NotFoundException(nameof(User), request.ResponsibleId);
+                throw new NotFoundException(nameof(User), request.UserId);
             }
 
-            var responsible = await _dbContext.EventResponsibles.FirstOrDefaultAsync(r => r.UserId == request.ResponsibleId, cancellationToken);
+            var responsible = await _dbContext.EventResponsibles.FirstOrDefaultAsync(r => r.UserId == request.UserId, cancellationToken);
             if(responsible == null)
             {
                 return new FinishEventResultVm { IsFinished = false, ErrorMessage = "Пользователь не ответственный за мероприятие" };
@@ -52,7 +52,7 @@ namespace MerchandiseShop.Application.Events.Commands.FinishEvent
 
             foreach (var particant in particants)
             {
-                var p = request.Participants.FirstOrDefault(p => p.UserId == particant.UserId);
+                var p = request.Participants.FirstOrDefault(p => p.ParticipantId == particant.Id);
                 if (p == null || p.IsVisit == false)
                 {
                     particant.IsVisit = false;
